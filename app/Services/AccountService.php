@@ -111,7 +111,7 @@ class AccountService implements AccountHandler
                 $join->on('transactions.id', '=', 'journal_entries.transaction_id')
                     ->where('transactions.posted_at', '<=', $endDate);
             })
-            ->groupBy('accounts.id')
+            ->groupBy(['accounts.id', 'accounts.name', 'accounts.category', 'accounts.subtype_id', 'accounts.currency_code', 'accounts.code'])
             ->with(['subtype:id,name']);
 
         if (! empty($accountIds)) {

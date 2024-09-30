@@ -34,10 +34,10 @@
                                     <td colspan="6" class="es-table__cell px-4 py-4">
                                         <div class="es-table__row-content flex items-center space-x-2">
                                             <span class="es-table__row-title text-gray-800 dark:text-gray-200 font-semibold tracking-wider">
-                                                {{ $subtype->name }}
+                                                {{ translate($subtype->name) }}
                                             </span>
                                             <x-tooltip
-                                                text="{!! $subtype->description !!}"
+                                                text="{!! !empty($subtype->description) ? translate($subtype->description) : '' !!}"
                                                 icon="heroicon-o-question-mark-circle"
                                                 placement="right"
                                                 maxWidth="300"
@@ -51,17 +51,17 @@
                                     <tr class="es-table__row">
                                         <td colspan="1" class="es-table__cell px-4 py-4">{{ $account->code }}</td>
                                         <td colspan="1" class="es-table__cell px-4 py-4">
-                                            {{ $account->name }}
+                                            {{ translate($account->name) }}
                                             <br>
                                             <small class="text-gray-500 dark:text-gray-400">
                                                 @if($account->getLastTransactionDate())
-                                                    Last transaction on {{ $account->getLastTransactionDate() }}
+                                                    {{ translate('Last transaction on') }} {{ $account->getLastTransactionDate() }}
                                                 @else
-                                                    No transactions for this account
+                                                    {{ translate('No transactions for this account') }}
                                                 @endif
                                             </small>
                                         </td>
-                                        <td colspan="2" class="es-table__cell px-4 py-4">{{ $account->description }}</td>
+                                        <td colspan="2" class="es-table__cell px-4 py-4">{{ !empty($account->description) ? translate($account->description): '' }}</td>
                                         <td colspan="1" class="es-table__cell px-4 py-4">
                                             @if($account->archived)
                                                 <x-filament::badge color="gray" size="sm">
