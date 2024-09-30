@@ -758,7 +758,9 @@ class Transactions extends Page implements HasTable
             })
             ->get()
             ->groupBy(fn (Account $account) => $account->category->getPluralLabel())
-            ->map(fn (Collection $accounts, string $category) => $accounts->pluck('name', 'id'))
+            ->map(
+                fn (Collection $accounts, string $category) => $accounts->pluck('name', 'id')->map(fn ($name) => translate($name))
+            )
             ->toArray();
     }
 

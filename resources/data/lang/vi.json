@@ -356,5 +356,21 @@
     "Various taxes incurred by the business, including income tax, sales tax, property tax, and payroll tax.": "Các loại thuế phát sinh đối với doanh nghiệp, bao gồm thuế thu nhập, thuế bán hàng, thuế tài sản và thuế bảng lương.",
     "Expenses not related to primary business activities, like losses from asset disposals, legal settlements, restructuring costs, or foreign exchange losses.": "Chi phí không liên quan đến hoạt động kinh doanh chính, chẳng hạn như các khoản lỗ từ việc thanh lý tài sản, bồi thường pháp lý, chi phí tái cấu trúc hoặc lỗ từ giao dịch ngoại hối.",
     "Expenses that are deducted from gross expenses to arrive at net expenses. This includes purchase discounts, returns, and allowances.": "Chi phí được khấu trừ từ tổng chi phí để tính ra chi phí ròng. Bao gồm giảm giá mua hàng, trả hàng và trợ cấp.",
-    "Expenses that have not been categorized into other expense categories.": "Các chi phí chưa được phân loại vào các danh mục chi phí khác."
+    "Expenses that have not been categorized into other expense categories.": "Các chi phí chưa được phân loại vào các danh mục chi phí khác.",
+    "Assets": "Tài sản",
+    "Liabilities": "Nợ phải trả",
+    "Equity": "Vốn chủ sở hữu",
+    "Revenue": "Doanh thu",
+    "Expenses": "Chi phí",
+    "Current Asset": "Tài sản ngắn hạn",
+    "Non-Current Asset": "Tài sản dài hạn",
+    "Contra Asset": "Tài sản đối ứng",
+    "Current Liability": "Nợ ngắn hạn",
+    "Non-Current Liability": "Nợ dài hạn",
+    "Contra Liability": "Nợ đối ứng",
+    "Operating Revenue": "Doanh thu hoạt động",
+    "Non-Operating Revenue": "Doanh thu không hoạt động",
+    "Operating Expense": "Chi phí hoạt động",
+    "Non-Operating Expense": "Chi phí không hoạt động",
+    "Contra Expense": "Chi phí đối ứng"
 }

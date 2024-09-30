@@ -26,22 +26,22 @@ enum AccountType: string implements HasLabel
     public function getLabel(): ?string
     {
         return match ($this) {
-            self::CurrentAsset => 'Current Asset',
-            self::NonCurrentAsset => 'Non-Current Asset',
-            self::ContraAsset => 'Contra Asset',
-            self::CurrentLiability => 'Current Liability',
-            self::NonCurrentLiability => 'Non-Current Liability',
-            self::ContraLiability => 'Contra Liability',
-            self::Equity => 'Equity',
-            self::ContraEquity => 'Contra Equity',
-            self::OperatingRevenue => 'Operating Revenue',
-            self::NonOperatingRevenue => 'Non-Operating Revenue',
-            self::ContraRevenue => 'Contra Revenue',
-            self::UncategorizedRevenue => 'Uncategorized Revenue',
-            self::OperatingExpense => 'Operating Expense',
-            self::NonOperatingExpense => 'Non-Operating Expense',
-            self::ContraExpense => 'Contra Expense',
-            self::UncategorizedExpense => 'Uncategorized Expense',
+            self::CurrentAsset => translate('Current Asset'),
+            self::NonCurrentAsset => translate('Non-Current Asset'),
+            self::ContraAsset => translate('Contra Asset'),
+            self::CurrentLiability => translate('Current Liability'),
+            self::NonCurrentLiability => translate('Non-Current Liability'),
+            self::ContraLiability => translate('Contra Liability'),
+            self::Equity => translate('Equity'),
+            self::ContraEquity => translate('Contra Equity'),
+            self::OperatingRevenue => translate('Operating Revenue'),
+            self::NonOperatingRevenue => translate('Non-Operating Revenue'),
+            self::ContraRevenue => translate('Contra Revenue'),
+            self::UncategorizedRevenue => translate('Uncategorized Revenue'),
+            self::OperatingExpense => translate('Operating Expense'),
+            self::NonOperatingExpense => translate('Non-Operating Expense'),
+            self::ContraExpense => translate('Contra Expense'),
+            self::UncategorizedExpense => translate('Uncategorized Expense'),
         };
     }
 

@@ -20,11 +20,11 @@ enum AccountCategory: string implements HasLabel
     public function getPluralLabel(): ?string
     {
         return match ($this) {
-            self::Asset => 'Assets',
-            self::Liability => 'Liabilities',
-            self::Equity => 'Equity',
-            self::Revenue => 'Revenue',
-            self::Expense => 'Expenses',
+            self::Asset => translate('Assets'),
+            self::Liability => translate('Liabilities'),
+            self::Equity => translate('Equity'),
+            self::Revenue => translate('Revenue'),
+            self::Expense => translate('Expenses'),
         };
     }
 

@@ -356,5 +356,21 @@
     "Add a new account": "Add a new account",
     "Fiscal Year End": "Fiscal Year End",
     "Last transaction on": "Last transaction on",
-    "No transactions for this account": "No transactions for this account"
+    "No transactions for this account": "No transactions for this account",
+    "Assets": "Assets",
+    "Liabilities": "Liabilities",
+    "Equity": "Equity",
+    "Revenue": "Revenue",
+    "Expenses": "Expenses",
+    "Current Asset": "Current Asset",
+    "Non-Current Asset": "Non-Current Asset",
+    "Contra Asset": "Contra Asset",
+    "Current Liability": "Current Liability",
+    "Non-Current Liability": "Non-Current Liability",
+    "Contra Liability": "Contra Liability",
+    "Operating Revenue": "Operating Revenue",
+    "Non-Operating Revenue": "Non-Operating Revenue",
+    "Operating Expense": "Operating Expense",
+    "Non-Operating Expense": "Non-Operating Expense",
+    "Contra Expense": "Contra Expense"
 }
