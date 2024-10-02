@@ -22,6 +22,11 @@ class Reports extends Page
     {
         return $infolist
             ->state([])
+            ->columns([
+                'sm' => 3,
+                'xl' => 6,
+                '2xl' => 8,
+            ])
             ->schema([
                 Section::make('Financial Statements')
                     ->aside()

@@ -27,7 +27,7 @@ return new class extends Migration
             $table->string('contact_method')->nullable();
             $table->string('phone_number', 30)->nullable();
             $table->string('tax_id', 50)->nullable();
-            $table->string('currency_code', 10);
+            $table->string('currency_code', 10)->default('USD');
             $table->string('website', 255)->nullable();
             $table->string('reference', 255)->nullable();
             $table->foreignId('created_by')->nullable()->constrained('users')->nullOnDelete();
