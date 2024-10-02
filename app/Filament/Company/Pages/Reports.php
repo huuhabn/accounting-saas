@@ -22,16 +22,10 @@ class Reports extends Page
     {
         return $infolist
             ->state([])
-            ->columns([
-                'sm' => 3,
-                'xl' => 6,
-                '2xl' => 8,
-            ])
             ->schema([
                 Section::make('Financial Statements')
                     ->aside()
                     ->description('Key financial statements that provide a snapshot of your company’s financial health.')
-                    ->extraAttributes(['class' => 'es-report-card'])
                     ->schema([
                         ReportEntry::make('income_statement')
                             ->hiddenLabel()
@@ -58,7 +52,6 @@ class Reports extends Page
                 Section::make('Detailed Reports')
                     ->aside()
                     ->description('Dig into the details of your company’s transactions, balances, and accounts.')
-                    ->extraAttributes(['class' => 'es-report-card'])
                     ->schema([
                         ReportEntry::make('account_balances')
                             ->hiddenLabel()

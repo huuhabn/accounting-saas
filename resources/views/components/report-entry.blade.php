@@ -5,7 +5,7 @@
     'iconColor' => 'gray',
 ])
 
-<div class="group relative p-6 hover:bg-gray-300/5 dark:hover:bg-gray-700/5">
+<div class="relative flex gap-4 items-start p-6 hover:bg-gray-300/5 dark:hover:bg-gray-700/5">
     <span
         @class([
             'inline-flex rounded-lg p-3 ring-4 ring-white dark:ring-gray-900',
@@ -23,7 +23,7 @@
     >
         <x-filament::icon :icon="$icon" class="h-6 w-6" />
     </span>
-    <div class="mt-8 pr-1">
+    <div class="mr-8">
         <h3 class="text-base font-semibold leading-6 text-gray-950 dark:text-white">
             {{ $heading }}
         </h3>
