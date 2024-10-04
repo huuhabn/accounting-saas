@@ -374,5 +374,21 @@
     "Non-Operating Expense": "Non-Operating Expense",
     "Contra Expense": "Contra Expense",
     "Personal Access Tokens": "Personal Access Tokens",
-    "Forgot your password?": "Forgot your password?"
+    "Forgot your password?": "Forgot your password?",
+    "Financial Statements": "Financial Statements",
+    "Key financial statements that provide a snapshot of your company’s financial health.": "Key financial statements that provide a snapshot of your company’s financial health.",
+    "Income Statement": "Income Statement",
+    "Tracks revenue and expenses to show profit or loss over a specific period of time.": "Tracks revenue and expenses to show profit or loss over a specific period of time.",
+    "Balance Sheet": "Balance Sheet",
+    "Snapshot of assets, liabilities, and equity at a specific point in time.": "Snapshot of assets, liabilities, and equity at a specific point in time.",
+    "Cash Flow Statement": "Cash Flow Statement",
+    "Shows cash inflows and outflows over a specific period of time.": "Shows cash inflows and outflows over a specific period of time.",
+    "Detailed Reports": "Detailed Reports",
+    "Dig into the details of your company’s transactions, balances, and accounts.": "Dig into the details of your company’s transactions, balances, and accounts.",
+    "Account Balances": "Account Balances",
+    "Summary view of balances and activity for all accounts.": "Summary view of balances and activity for all accounts.",
+    "Trial Balance": "Trial Balance",
+    "The sum of all debit and credit balances for all accounts on a single day. This helps to ensure that the books are in balance.": "The sum of all debit and credit balances for all accounts on a single day. This helps to ensure that the books are in balance.",
+    "Account Transactions": "Account Transactions",
+    "A record of all transactions for a company. The general ledger is the core of a company's financial records.": "A record of all transactions for a company. The general ledger is the core of a company's financial records."
 }

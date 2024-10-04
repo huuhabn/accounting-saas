@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Http;
 class Translate extends Command
 {
     protected $signature = 'hs:translate {from} {to*} {--file=} {--json}';
+
     protected $description = 'Translate language files from one language to another using Google Translate';
 
     public function handle()
@@ -19,29 +20,31 @@ class Translate extends Command
         $onlyJson = $this->option('json');
         $sourcePath = "lang/{$from}";
 
-        if (!$onlyJson && !File::isDirectory($sourcePath)) {
+        if (! $onlyJson && ! File::isDirectory($sourcePath)) {
             $this->error("The source language directory does not exist: {$sourcePath}");
+
             return;
         }
 
         if ($onlyJson) {
             $sourcePath = "lang/{$from}.json";
-            if (!File::isFile($sourcePath)) {
+            if (! File::isFile($sourcePath)) {
                 $this->error("The source language json file does not exist: {$sourcePath}");
+
                 return;
             }
         }
 
-        if ($onlyJson):
+        if ($onlyJson) {
             $this->processJsonFile($sourcePath, $from, $targets);
-        else :
+        } else {
             $this->processDirectory($sourcePath, $from, $targets, $specificFile);
-        endif;
+        }
 
         $this->info("\n\n All files have been translate. \n");
     }
 
-    protected function processJsonFile(string $sourceFile, string $from, array|string $targets) :void
+    protected function processJsonFile(string $sourceFile, string $from, array | string $targets): void
     {
         foreach ($targets as $to) {
             $this->info("\n\n 🔔 Translate to '{$to}'");
@@ -50,7 +53,7 @@ class Translate extends Command
             $translations = json_decode(File::get($sourceFile), true, 512, JSON_THROW_ON_ERROR);
 
             $bar = $this->output->createProgressBar(count($translations));
-            $bar->setFormat(" %current%/%max% [%bar%] %percent:3s%% -- %message%");
+            $bar->setFormat(' %current%/%max% [%bar%] %percent:3s%% -- %message%');
             $bar->setMessage('Initializing...');
             $bar->start();
 
@@ -64,19 +67,20 @@ class Translate extends Command
             $outputContent = json_encode($translated, JSON_THROW_ON_ERROR | JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
             File::put($targetPath, $outputContent);
 
-            $bar->setMessage("✅");
+            $bar->setMessage('✅');
         }
 
         $bar->finish();
     }
 
-    protected function processDirectory(string $sourcePath, string $from, array|string $targets, bool|array|string|null $specificFile): void
+    protected function processDirectory(string $sourcePath, string $from, array | string $targets, bool | array | string | null $specificFile): void
     {
         $filesToProcess = [];
         if ($specificFile) {
             $filePath = $sourcePath . '/' . $specificFile;
-            if (!File::exists($filePath)) {
+            if (! File::exists($filePath)) {
                 $this->error("The specified file does not exist: {$filePath}");
+
                 return;
             }
             $filesToProcess[] = ['path' => $filePath, 'relativePathname' => $specificFile];
@@ -90,7 +94,7 @@ class Translate extends Command
             $this->info("\n\n 🔔 Translate to '{$to}'");
 
             $bar = $this->output->createProgressBar(count($filesToProcess));
-            $bar->setFormat(" %current%/%max% [%bar%] %percent:3s%% -- %message%");
+            $bar->setFormat(' %current%/%max% [%bar%] %percent:3s%% -- %message%');
             $bar->setMessage('Initializing...');
             $bar->start();
 
@@ -105,7 +109,7 @@ class Translate extends Command
                 $translated = $this->translateArray($translations, $from, $to);
 
                 $targetPath = "lang/{$to}/" . dirname($filePath);
-                if (!File::isDirectory($targetPath)) {
+                if (! File::isDirectory($targetPath)) {
                     File::makeDirectory($targetPath, 0755, true, true);
                 }
 
@@ -115,7 +119,7 @@ class Translate extends Command
 
                 $bar->advance();
 
-                $bar->setMessage("✅");
+                $bar->setMessage('✅');
             }
 
             $bar->finish();
@@ -132,9 +136,10 @@ class Translate extends Command
                 $content[$key] = $this->translateArray($value, $source, $target);
                 $bar?->advance();
             }
+
             return $content;
-        } else if ($content === '' || $content === null){
-            $this->error("Translation value missing, make sure all translation values are not empty, in source file!");
+        } elseif ($content === '' || $content === null) {
+            $this->error('Translation value missing, make sure all translation values are not empty, in source file!');
             exit();
         } else {
             return $this->translateUsingGoogleTranslate($content, $source, $target);
@@ -151,6 +156,7 @@ class Translate extends Command
             foreach ($content as $key => $value) {
                 $translatedArray[$key] = $this->translateUsingGoogleTranslate($value, $source, $target);
             }
+
             return $translatedArray;
         } else {
             // Is Icons
@@ -166,15 +172,16 @@ class Translate extends Command
             foreach ($response[0] as $translation) {
                 $translatedText .= $translation[0];
             }
-            return !empty($translatedText) ? $translatedText : $content;
+
+            return ! empty($translatedText) ? $translatedText : $content;
         }
     }
 
     /**
      * Convert an array to a string representation using short array syntax.
      *
-     * @param array $array The array to convert.
-     * @param int $indentLevel The current indentation level (for formatting).
+     * @param  array  $array  The array to convert.
+     * @param  int  $indentLevel  The current indentation level (for formatting).
      * @return string The array as a string.
      */
     protected function arrayToString(array $array, int $indentLevel = 1): string

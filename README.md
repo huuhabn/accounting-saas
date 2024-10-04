@@ -72,7 +72,7 @@ any point by running the following command:
 
 ## Language Generator
 
-Translate.
+Translate language files from one language to another using Google Translate
 ```
 php artisan hs:translate en vi ar
 ```
@@ -80,6 +80,10 @@ php artisan hs:translate en vi ar
 Translate Specific File
 ```
 php artisan hs:translate vendor/filament-companies/en vendor/filament-companies/vi --file=default.php
+```
+Translate json
+```bash
+php artisan hs:translate en vi --json
 ```
 
 ## Generating PDFs for Reports

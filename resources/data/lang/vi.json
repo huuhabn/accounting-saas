@@ -374,5 +374,21 @@
     "Non-Operating Expense": "Chi phí không hoạt động",
     "Contra Expense": "Chi phí đối ứng",
     "Personal Access Tokens": "Personal Access Tokens",
-    "Forgot your password?": "Forgot your password?"
+    "Forgot your password?": "Forgot your password?",
+    "Financial Statements": "Báo cáo tài chính",
+    "Key financial statements that provide a snapshot of your company’s financial health.": "Các báo cáo tài chính quan trọng cung cấp cái nhìn tổng quan về tình hình tài chính của công ty bạn.",
+    "Income Statement": "Báo cáo thu nhập",
+    "Tracks revenue and expenses to show profit or loss over a specific period of time.": "Theo dõi doanh thu và chi phí để hiển thị lãi hoặc lỗ trong một khoảng thời gian cụ thể.",
+    "Balance Sheet": "Bảng cân đối kế toán",
+    "Snapshot of assets, liabilities, and equity at a specific point in time.": "Ảnh chụp nhanh về tài sản, nợ phải trả và vốn chủ sở hữu tại một thời điểm cụ thể.",
+    "Cash Flow Statement": "Báo cáo lưu chuyển tiền tệ",
+    "Shows cash inflows and outflows over a specific period of time.": "Hiển thị dòng tiền vào và dòng tiền ra trong một khoảng thời gian cụ thể.",
+    "Detailed Reports": "Báo cáo chi tiết",
+    "Dig into the details of your company’s transactions, balances, and accounts.": "Tìm hiểu chi tiết về các giao dịch, số dư và tài khoản của công ty bạn.",
+    "Account Balances": "Số dư tài khoản",
+    "Summary view of balances and activity for all accounts.": "Chế độ xem tóm tắt về số dư và hoạt động của tất cả các tài khoản.",
+    "Trial Balance": "Số dư dùng thử",
+    "The sum of all debit and credit balances for all accounts on a single day. This helps to ensure that the books are in balance.": "Tổng tất cả số dư ghi nợ và ghi có của tất cả các tài khoản trong một ngày. Điều này giúp đảm bảo rằng các cuốn sách được cân bằng.",
+    "Account Transactions": "Giao dịch tài khoản",
+    "A record of all transactions for a company. The general ledger is the core of a company's financial records.": "Một bản ghi của tất cả các giao dịch cho một công ty. Sổ cái chung là cốt lõi của hồ sơ tài chính của công ty."
 }
