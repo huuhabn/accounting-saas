@@ -33,7 +33,7 @@
 
 <x-panel-shift-dropdown.item
     :url="\App\Filament\Company\Clusters\Settings::getUrl()"
-    label="All Settings"
+    label="Settings"
     icon="heroicon-m-cog-6-tooth"
 />
 

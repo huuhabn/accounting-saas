@@ -15,7 +15,7 @@ class PanelShiftDropdown implements Plugin
 
     protected string $renderHook = PanelsRenderHook::USER_MENU_BEFORE;
 
-    protected bool $hasDisplayAndAccessibility = true;
+    protected bool $hasDisplayAndAccessibility = false;
 
     protected bool $hasCompanySettings = true;
 

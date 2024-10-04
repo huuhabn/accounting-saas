@@ -101,7 +101,7 @@ class FilamentCompaniesServiceProvider extends PanelProvider
             )
             ->plugin(
                 PanelShiftDropdown::make()
-                    ->logoutItem()
+                    ->displayAndAccessibility()
                     ->companySettings(),
             )
             ->colors([
