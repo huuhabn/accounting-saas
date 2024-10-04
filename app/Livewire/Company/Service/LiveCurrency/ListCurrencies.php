@@ -24,20 +24,16 @@ class ListCurrencies extends Component implements HasForms, HasTable
             ->query(CurrencyList::query())
             ->columns([
                 Tables\Columns\TextColumn::make('code')
-                    ->localizeLabel()
                     ->weight(FontWeight::Medium)
                     ->sortable()
                     ->searchable(),
                 Tables\Columns\TextColumn::make('name')
-                    ->localizeLabel()
                     ->sortable()
                     ->searchable(),
                 Tables\Columns\TextColumn::make('entity')
-                    ->localizeLabel()
                     ->sortable()
                     ->searchable(),
                 Tables\Columns\IconColumn::make('available')
-                    ->localizeLabel()
                     ->boolean()
                     ->sortable(),
             ])

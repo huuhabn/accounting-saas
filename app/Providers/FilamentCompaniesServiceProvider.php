@@ -123,18 +123,8 @@ class FilamentCompaniesServiceProvider extends PanelProvider
                             ->items([
                                 ...AccountChart::getNavigationItems(),
                                 ...Transactions::getNavigationItems(),
-                            ]),
-                        NavigationGroup::make('Banking')
-                            ->localizeLabel()
-                            ->icon('heroicon-o-building-library')
-                            ->items(AccountResource::getNavigationItems()),
-                        NavigationGroup::make('HR')
-                            ->icon('heroicon-o-user-group')
-                            ->items(DepartmentResource::getNavigationItems()),
-                        NavigationGroup::make('Services')
-                            ->localizeLabel()
-                            ->icon('heroicon-o-wrench-screwdriver')
-                            ->items([
+                                ...AccountResource::getNavigationItems(),
+                                ...DepartmentResource::getNavigationItems(),
                                 ...ConnectedAccount::getNavigationItems(),
                                 ...LiveCurrency::getNavigationItems(),
                             ]),

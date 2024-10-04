@@ -35,7 +35,6 @@ class ListCompanyCurrencies extends Component implements HasForms, HasTable
             ->modelLabel($this->getTableModelLabel())
             ->columns([
                 Tables\Columns\TextColumn::make('code')
-                    ->localizeLabel()
                     ->weight(FontWeight::Medium)
                     ->icon(static fn (Currency $record) => $record->isEnabled() ? 'heroicon-o-lock-closed' : null)
                     ->tooltip(function (Currency $record) {
@@ -53,15 +52,14 @@ class ListCompanyCurrencies extends Component implements HasForms, HasTable
                     ->sortable()
                     ->searchable(),
                 Tables\Columns\TextColumn::make('name')
-                    ->localizeLabel()
                     ->sortable()
                     ->searchable(),
                 Tables\Columns\TextColumn::make('rate')
-                    ->localizeLabel()
+                    ->numeric()
                     ->sortable()
                     ->searchable(),
                 Tables\Columns\TextColumn::make('live_rate')
-                    ->localizeLabel()
+                    ->numeric()
                     ->sortable()
                     ->searchable(),
             ])

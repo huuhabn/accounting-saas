@@ -12,9 +12,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        if (Forex::isDisabled()) {
-            return;
-        }
+//        if (Forex::isDisabled()) {
+//            return;
+//        }
 
         Schema::create('currency_lists', function (Blueprint $table) {
             $table->id();
