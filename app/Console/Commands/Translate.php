@@ -101,6 +101,7 @@ class Translate extends Command
                 $bar->display();
 
                 $translations = include $fileInfo['path'];
+
                 $translated = $this->translateArray($translations, $from, $to);
 
                 $targetPath = "lang/{$to}/" . dirname($filePath);
@@ -124,8 +125,8 @@ class Translate extends Command
     protected function translateArray($content, $source, $target, $bar = null)
     {
         if (is_array($content)) {
-            if (empty($content)){
-                return $content;
+            if (empty($content)) {
+                return null;
             }
             foreach ($content as $key => $value) {
                 $content[$key] = $this->translateArray($value, $source, $target);
@@ -189,13 +190,16 @@ class Translate extends Command
                 ? $this->arrayToString($value, $indentLevel + 1)
                 : (is_string($value) ? "'" . addcslashes($value, "'") . "'" : $value);
 
-            $entries[] = "$indent$entryKey => $entryValue";
+            // Ensure the entry value is not empty
+            if ($entryValue !== '' && $entryValue !== null) {
+                $entries[] = "$indent$entryKey => $entryValue";
+            }
         }
 
         $body = implode(",\n", $entries);
 
         return $indentLevel > 1
             ? "[\n$body,\n" . str_repeat('    ', $indentLevel - 1) . ']'
-            : "[\n$body\n$indent]";
+            : "[\n$body\n]";
     }
 }

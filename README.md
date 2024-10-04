@@ -48,18 +48,6 @@ Build your assets & start the local development server
     npm run build
     npm run dev
 
-**Command list**
-
-    git clone https://github.com/andrewdwallo/erpsaas.git
-    cd erpsaas
-    composer install
-    npm install
-    cp .env.example .env
-    php artisan key:generate
-    php artisan migrate
-    npm run build
-    npm run dev
-
 ## Database seeding
 
 **You may populate the database to help you get started quickly**
@@ -81,6 +69,18 @@ Run the database seeder
 any point by running the following command:
 
     php artisan migrate:fresh
+
+## Language Generator
+
+Translate.
+```
+php artisan hs:translate en vi ar
+```
+
+Translate Specific File
+```
+php artisan hs:translate vendor/filament-companies/en vendor/filament-companies/vi --file=default.php
+```
 
 ## Generating PDFs for Reports
 
