@@ -390,5 +390,8 @@
     "Trial Balance": "Số dư dùng thử",
     "The sum of all debit and credit balances for all accounts on a single day. This helps to ensure that the books are in balance.": "Tổng tất cả số dư ghi nợ và ghi có của tất cả các tài khoản trong một ngày. Điều này giúp đảm bảo rằng các cuốn sách được cân bằng.",
     "Account Transactions": "Giao dịch tài khoản",
-    "A record of all transactions for a company. The general ledger is the core of a company's financial records.": "Một bản ghi của tất cả các giao dịch cho một công ty. Sổ cái chung là cốt lõi của hồ sơ tài chính của công ty."
+    "A record of all transactions for a company. The general ledger is the core of a company's financial records.": "Một bản ghi của tất cả các giao dịch cho một công ty. Sổ cái chung là cốt lõi của hồ sơ tài chính của công ty.",
+    "Reports": "Báo cáo",
+    "Settings": "Cài đặt",
+    "Manage Company": "Hồ sơ công ty"
 }

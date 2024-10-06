@@ -2,6 +2,7 @@
 
 namespace App\Filament\Company\Pages;
 
+use Illuminate\Contracts\Support\Htmlable;
 use App\Filament\Company\Pages\Reports\AccountBalances;
 use App\Filament\Company\Pages\Reports\AccountTransactions;
 use App\Filament\Company\Pages\Reports\IncomeStatement;
@@ -18,14 +19,26 @@ class Reports extends Page
 
     protected static string $view = 'filament.company.pages.reports';
 
+    protected static ?string $title = 'Reports';
+
+    public function getTitle(): string|Htmlable
+    {
+        return translate(static::$title);
+    }
+
+    public static function getNavigationLabel(): string
+    {
+        return translate(static::$title);
+    }
+
     public function reportsInfolist(Infolist $infolist): Infolist
     {
         return $infolist
             ->state([])
             ->schema([
-                Section::make('Financial Statements')
+                Section::make(translate('Financial Statements'))
                     ->aside()
-                    ->description('Key financial statements that provide a snapshot of your company’s financial health.')
+                    ->description(translate('Key financial statements that provide a snapshot of your company’s financial health.'))
                     ->schema([
                         ReportEntry::make('income_statement')
                             ->hiddenLabel()
@@ -49,9 +62,9 @@ class Reports extends Page
                             ->iconColor(Color::Cyan)
                             ->url('#'),
                     ]),
-                Section::make('Detailed Reports')
+                Section::make(translate('Detailed Reports'))
                     ->aside()
-                    ->description('Dig into the details of your company’s transactions, balances, and accounts.')
+                    ->description(translate('Dig into the details of your company’s transactions, balances, and accounts.'))
                     ->schema([
                         ReportEntry::make('account_balances')
                             ->hiddenLabel()

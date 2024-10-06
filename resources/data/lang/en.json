@@ -390,5 +390,8 @@
     "Trial Balance": "Trial Balance",
     "The sum of all debit and credit balances for all accounts on a single day. This helps to ensure that the books are in balance.": "The sum of all debit and credit balances for all accounts on a single day. This helps to ensure that the books are in balance.",
     "Account Transactions": "Account Transactions",
-    "A record of all transactions for a company. The general ledger is the core of a company's financial records.": "A record of all transactions for a company. The general ledger is the core of a company's financial records."
+    "A record of all transactions for a company. The general ledger is the core of a company's financial records.": "A record of all transactions for a company. The general ledger is the core of a company's financial records.",
+    "Reports": "Reports",
+    "Settings": "Settings",
+    "Manage Company": "Manage Company"
 }
