@@ -1,12 +1,4 @@
-# ERPSAAS
-
-<img width="1920" alt="Screenshot 2024-05-07 at 10 01 46 PM" src="https://github.com/andrewdwallo/erpsaas/assets/104294090/5146c4db-dffc-4207-9095-2ebb80d452e1">
-<img width="1920" alt="Screenshot 2024-05-07 at 10 04 05 PM" src="https://github.com/andrewdwallo/erpsaas/assets/104294090/d7115830-6912-4267-ab54-17f7dbcc21cd">
-<img width="1920" alt="Screenshot 2024-05-07 at 10 23 31 PM" src="https://github.com/andrewdwallo/erpsaas/assets/104294090/c85862ac-62ff-4c0d-9b2a-f7393ad977ef">
-<img width="1920" alt="Screenshot 2024-05-07 at 10 24 11 PM" src="https://github.com/andrewdwallo/erpsaas/assets/104294090/3a4deebc-528c-4b84-91db-9f0515de883d">
-<img width="1920" alt="Screenshot 2024-05-07 at 10 24 46 PM" src="https://github.com/andrewdwallo/erpsaas/assets/104294090/c50a899d-ee6f-4300-92a9-4a41c5433972">
-<img width="1920" alt="Screenshot 2024-05-07 at 10 55 56 PM" src="https://github.com/andrewdwallo/erpsaas/assets/104294090/6395030a-6688-4b08-bf6c-b12b5e591b31">
-
+# Sale SAAS
 
 This repo is currently a work in progress — PRs and issues welcome!
 
@@ -14,47 +6,37 @@ This repo is currently a work in progress — PRs and issues welcome!
 
 ## Installation
 
-Please check the official laravel installation guide for server requirements before you
-start. [Official Documentation](https://laravel.com/docs/10.x)
-
-Clone the repository
-
-    git clone https://github.com/andrewdwallo/erpsaas.git
-
-Switch to the repo folder
-
-    cd erpsaas
-
 Install all the dependencies using composer and npm
 
-    composer install
-    npm install
+```bash
+composer install
+npm install
+```
 
 Copy the example env file and make the required configuration changes in the .env file
-
-    cp .env.example .env
+```bash
+cp .env.example .env
+```
 
 Generate a new application key
-
-    php artisan key:generate
+```bash
+php artisan key:generate
+```
 
 Run the database migrations (**Set the database connection in .env before migrating**)
-
-    php artisan migrate
+```bash
+php artisan migrate
+```
 
 Build your assets & start the local development server
 
-    php artisan filament:assets
-    npm run build
-    npm run dev
+```bash
+php artisan filament:assets
+npm run build
+npm run dev
+```
 
 ## Database seeding
-
-**You may populate the database to help you get started quickly**
-
-Open the DatabaseSeeder and set the property values as per your requirement
-
-    database/seeders/DatabaseSeeder.php
 
 Default login information:
 

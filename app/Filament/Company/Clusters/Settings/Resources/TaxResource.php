@@ -6,6 +6,7 @@ use App\Concerns\NotifiesOnDelete;
 use App\Enums\Setting\TaxComputation;
 use App\Enums\Setting\TaxScope;
 use App\Enums\Setting\TaxType;
+use Filament\Forms\Components\Toggle;
 use App\Filament\Company\Clusters\Settings;
 use App\Filament\Company\Clusters\Settings\Resources\TaxResource\Pages;
 use App\Models\Setting\Tax;
@@ -16,7 +17,6 @@ use Filament\Resources\Resource;
 use Filament\Support\Enums\FontWeight;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Wallo\FilamentSelectify\Components\ToggleButton;
 
 class TaxResource extends Resource
 {
@@ -83,10 +83,8 @@ class TaxResource extends Resource
                         Forms\Components\Select::make('scope')
                             ->localizeLabel()
                             ->options(TaxScope::class),
-                        ToggleButton::make('enabled')
+                        Toggle::make('enabled')
                             ->localizeLabel('Default')
-                            ->onLabel(Tax::enabledLabel())
-                            ->offLabel(Tax::disabledLabel()),
                     ])->columns(),
             ]);
     }

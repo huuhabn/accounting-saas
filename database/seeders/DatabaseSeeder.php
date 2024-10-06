@@ -2,9 +2,8 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
-use Database\Factories\CompanyFactory;
 use Illuminate\Database\Seeder;
+use Database\Seeders\Admin\AdminDemoSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -13,23 +12,17 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // Create a single admin user and their personal company
-        $adminUser = User::factory()
-            ->withPersonalCompany(function (CompanyFactory $factory) {
-                return $factory->withTransactions();
-            })
-            ->create([
-                'name' => 'Admin',
-                'email' => 'huuhadev@gmail.com',
-                'password' => bcrypt('password'),
-                'current_company_id' => 1,  // Assuming this will be the ID of the created company
-                'created_at' => now(),
-            ]);
+        if ($this->command->confirm('Run default values seeder?', true)) {
+            $this->call(DefaultValuesSeeder::class);
+        }
 
-        // Optionally, set additional properties or create related entities specific to this company
-        $adminUser->ownedCompanies->first()->update([
-            'name' => 'MNC Company',
-            'created_at' => now(),
-        ]);
+        if ($this->command->confirm('Run supper admin seeder?', true)) {
+            $this->call(BusinessSeeder::class);
+        }
+
+        if ($this->command->confirm('Run admin demo seeder?', true)) {
+            $this->call(AdminDemoSeeder::class);
+        }
+
     }
 }

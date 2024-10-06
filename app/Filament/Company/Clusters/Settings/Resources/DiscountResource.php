@@ -4,6 +4,7 @@ namespace App\Filament\Company\Clusters\Settings\Resources;
 
 use App\Concerns\NotifiesOnDelete;
 use App\Enums\Setting\DateFormat;
+use Filament\Forms\Components\Toggle;
 use App\Enums\Setting\DiscountComputation;
 use App\Enums\Setting\DiscountScope;
 use App\Enums\Setting\DiscountType;
@@ -19,7 +20,6 @@ use Filament\Resources\Resource;
 use Filament\Support\Enums\FontWeight;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Wallo\FilamentSelectify\Components\ToggleButton;
 
 class DiscountResource extends Resource
 {
@@ -120,10 +120,8 @@ class DiscountResource extends Resource
                             ->format('Y-m-d H:i:s')
                             ->displayFormat('F d, Y H:i')
                             ->seconds(false),
-                        ToggleButton::make('enabled')
+                        Toggle::make('enabled')
                             ->localizeLabel('Default')
-                            ->onLabel(Discount::enabledLabel())
-                            ->offLabel(Discount::disabledLabel()),
                     ])->columns(),
             ]);
     }

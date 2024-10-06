@@ -1,0 +1,5 @@
+<?php
+
+use HS\Inventory\Tests\TestCase;
+
+uses(TestCase::class)->in(__DIR__);

@@ -1,0 +1,32 @@
+[
+    {
+        "name": "Phone",
+        "image": "phone.jpg",
+        "description": "Collection of Phone"
+    },
+    {
+        "name": "Laptop",
+        "image": "laptop.png",
+        "description": "Collection of Laptop"
+    },
+    {
+        "name": "Shoes",
+        "image": "shoes.png",
+        "description": "Collection of Shoes"
+    },
+    {
+        "name": "Trousers",
+        "image": "trousers.png",
+        "description": "Collection of Trousers"
+    },
+    {
+        "name": "Hoodies",
+        "image": "hoodies.png",
+        "description": "Collection of Hoodies"
+    },
+    {
+        "name": "Sale",
+        "image": "sale.png",
+        "description": "50% OFF Selected Items"
+    }
+]

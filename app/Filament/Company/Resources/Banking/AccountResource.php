@@ -2,6 +2,7 @@
 
 namespace App\Filament\Company\Resources\Banking;
 
+use Filament\Forms\Components\Toggle;
 use App\Enums\Accounting\AccountCategory;
 use App\Enums\Banking\BankAccountType;
 use App\Filament\Company\Resources\Banking\AccountResource\Pages;
@@ -19,7 +20,6 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rules\Unique;
-use Wallo\FilamentSelectify\Components\ToggleButton;
 
 class AccountResource extends Resource
 {
@@ -98,7 +98,7 @@ class AccountResource extends Resource
                                     })
                                     ->maxLength(20)
                                     ->validationAttribute('account number'),
-                                ToggleButton::make('enabled')
+                                Toggle::make('enabled')
                                     ->localizeLabel('Default'),
                             ]),
                     ])->columns(),
