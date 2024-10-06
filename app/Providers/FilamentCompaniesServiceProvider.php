@@ -28,6 +28,7 @@ use App\Filament\Company\Pages\Service\LiveCurrency;
 use App\Filament\Company\Resources\Banking\AccountResource;
 use App\Filament\Company\Resources\Core\DepartmentResource;
 use App\Filament\Components\PanelShiftDropdown;
+use App\Filament\User\Clusters\Account;
 use App\Http\Middleware\ConfigureCurrentCompany;
 use App\Livewire\UpdatePassword;
 use App\Livewire\UpdateProfileInformation;
@@ -101,8 +102,12 @@ class FilamentCompaniesServiceProvider extends PanelProvider
             )
             ->plugin(
                 PanelShiftDropdown::make()
-                    ->displayAndAccessibility()
-                    ->companySettings(),
+                    ->logoutItem()
+                    ->companySettings()
+                    ->navigation(function (NavigationBuilder $builder): NavigationBuilder {
+                        return $builder
+                            ->items(Account::getNavigationItems());
+                    }),
             )
             ->colors([
                 'primary' => Color::Indigo,
