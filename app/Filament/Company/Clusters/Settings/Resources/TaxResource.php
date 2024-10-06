@@ -51,7 +51,7 @@ class TaxResource extends Resource
                                     $existingTax = Tax::where('company_id', auth()->user()->currentCompany->id)
                                         ->where('name', $value)
                                         ->where('type', $get('type'))
-                                        ->first();
+                                         ->first();
 
                                     if ($existingTax && $existingTax->getKey() !== $component->getRecord()?->getKey()) {
                                         $message = translate('The :Type :record ":name" already exists.', [

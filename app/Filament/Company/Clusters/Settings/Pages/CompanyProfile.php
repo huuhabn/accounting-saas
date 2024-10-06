@@ -47,6 +47,8 @@ class CompanyProfile extends Page
 
     protected static ?string $cluster = Settings::class;
 
+    protected static ?int $navigationSort = -10;
+
     public ?array $data = [];
 
     #[Locked]
