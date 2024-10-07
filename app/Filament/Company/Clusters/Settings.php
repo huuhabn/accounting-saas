@@ -11,7 +11,7 @@ class Settings extends Cluster
 
     protected static ?string $navigationIcon = 'heroicon-o-squares-2x2';
 
-    public function getTitle(): string|Htmlable
+    public function getTitle(): string | Htmlable
     {
         return translate(static::$title);
     }

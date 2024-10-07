@@ -15,7 +15,7 @@ class PanelShiftDropdown implements Plugin
 
     protected string $renderHook = PanelsRenderHook::USER_MENU_BEFORE;
 
-    protected bool $hasDisplayAndAccessibility = false;
+    protected bool $hasDisplayAndAccessibility = true;
 
     protected bool $hasCompanySettings = true;
 
@@ -92,7 +92,6 @@ class PanelShiftDropdown implements Plugin
     public function getNavigationAsHierarchyArray(): array
     {
         $navigation = $this->getNavigation();
-
         $panels = $this->initializePanels();
 
         foreach ($navigation as $item) {
@@ -173,13 +172,13 @@ class PanelShiftDropdown implements Plugin
             $displayAndAccessibilityId = 'display-and-accessibility';
             $panels['main']['items'][] = [
                 'panelId' => $displayAndAccessibilityId,
-                'label' => 'Display & Accessibility',
+                'label' => translate('Display & Accessibility'),
                 'icon' => 'heroicon-s-moon',
             ];
 
             $panels[$displayAndAccessibilityId] = [
                 'panelId' => $displayAndAccessibilityId,
-                'label' => 'Display & Accessibility',
+                'label' => translate('Display & Accessibility'),
                 'items' => [],
                 'renderItems' => false,
             ];
@@ -192,13 +191,13 @@ class PanelShiftDropdown implements Plugin
             $companySettingsId = 'company-settings';
             $panels['main']['items'][] = [
                 'panelId' => $companySettingsId,
-                'label' => 'Company Settings',
+                'label' => translate('Company Settings'),
                 'icon' => 'heroicon-s-building-office-2',
             ];
 
             $panels[$companySettingsId] = [
                 'panelId' => $companySettingsId,
-                'label' => 'Company Settings',
+                'label' => translate('Company Settings'),
                 'items' => [],
                 'renderItems' => false,
             ];
@@ -206,13 +205,13 @@ class PanelShiftDropdown implements Plugin
             $switchCompanyPanelId = 'company-switcher';
             $panels[$companySettingsId]['items'][] = [
                 'panelId' => $switchCompanyPanelId,
-                'label' => 'Switch Company',
+                'label' => translate('Company Switcher'),
                 'icon' => '',
             ];
 
             $panels[$switchCompanyPanelId] = [
                 'panelId' => $switchCompanyPanelId,
-                'label' => 'Switch Company',
+                'label' => translate('Switch Company'),
                 'items' => [],
                 'renderItems' => false,
             ];

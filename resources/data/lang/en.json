@@ -393,5 +393,12 @@
     "A record of all transactions for a company. The general ledger is the core of a company's financial records.": "A record of all transactions for a company. The general ledger is the core of a company's financial records.",
     "Reports": "Reports",
     "Settings": "Settings",
-    "Manage Company": "Manage Company"
+    "Manage Company": "Manage Company",
+    "Company Settings": "Company Settings",
+    "Company Switcher": "Company Switcher",
+    "Display & Accessibility": "Display & Accessibility",
+    "My Account": "My Account",
+    "Switch Company": "Switch Company",
+    "Limited Liability Company": "Limited Liability Company",
+    "Non-profit": "Non-profit"
 }

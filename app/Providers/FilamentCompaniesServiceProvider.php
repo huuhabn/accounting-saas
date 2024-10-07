@@ -43,6 +43,7 @@ use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
 use Filament\Navigation\NavigationBuilder;
 use Filament\Navigation\NavigationGroup;
+use Filament\Navigation\NavigationItem;
 use Filament\Pages;
 use Filament\Pages\Dashboard;
 use Filament\Panel;
@@ -107,6 +108,23 @@ class FilamentCompaniesServiceProvider extends PanelProvider
                     ->navigation(function (NavigationBuilder $builder): NavigationBuilder {
                         return $builder
                             ->items(Account::getNavigationItems());
+//                            ->items([
+//                                ...Account::getNavigationItems(),
+//                                ...Settings::getNavigationItems(),
+//                            ])
+//                            ->groups([
+//                                NavigationGroup::make('Accounting')
+//                                    ->localizeLabel()
+//                                    ->icon('heroicon-o-clipboard-document-list')
+//                                    ->items([
+//                                        ...AccountChart::getNavigationItems(),
+//                                        ...Transactions::getNavigationItems(),
+//                                        ...AccountResource::getNavigationItems(),
+//                                        ...DepartmentResource::getNavigationItems(),
+//                                        ...ConnectedAccount::getNavigationItems(),
+//                                        ...LiveCurrency::getNavigationItems(),
+//                                    ]),
+//                            ]);
                     }),
             )
             ->colors([

@@ -21,7 +21,7 @@ class AddressFactory extends BaseFactory
             'line_two' => $this->faker->boolean ? $this->faker->secondaryAddress : null,
             'line_three' => $this->faker->boolean ? $this->faker->buildingNumber : null,
             'city' => $this->faker->city,
-            'state' => $this->faker->boolean ? $this->faker->state : null,
+            'state' => $this->faker->boolean ? $this->faker->state($this->faker->countryCode, 'name') : null,
             'postcode' => $this->faker->boolean ? $this->faker->postcode : null,
             'delivery_instructions' => $this->faker->boolean ? $this->faker->sentence : null,
             'contact_email' => $this->faker->boolean ? $this->faker->safeEmail : null,

@@ -2,18 +2,17 @@
 
 namespace Database\Seeders\Admin;
 
-use Faker\Factory;
 use App\Models\User;
+use Database\Seeders\AbstractSeeder;
+use Faker\Factory;
+use Illuminate\Support\Facades\DB;
 use Lunar\Models\Address;
 use Lunar\Models\Customer;
-use Illuminate\Support\Facades\DB;
-use Database\Seeders\AbstractSeeder;
 
 class CustomerSeeder extends AbstractSeeder
 {
     /**
      * Run the database seeds.
-     *
      */
     public function run(): void
     {

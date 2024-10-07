@@ -2,7 +2,6 @@
 
 namespace App\Filament\Company\Pages;
 
-use Illuminate\Contracts\Support\Htmlable;
 use App\Filament\Company\Pages\Reports\AccountBalances;
 use App\Filament\Company\Pages\Reports\AccountTransactions;
 use App\Filament\Company\Pages\Reports\IncomeStatement;
@@ -12,6 +11,7 @@ use Filament\Infolists\Components\Section;
 use Filament\Infolists\Infolist;
 use Filament\Pages\Page;
 use Filament\Support\Colors\Color;
+use Illuminate\Contracts\Support\Htmlable;
 
 class Reports extends Page
 {
@@ -21,7 +21,7 @@ class Reports extends Page
 
     protected static ?string $title = 'Reports';
 
-    public function getTitle(): string|Htmlable
+    public function getTitle(): string | Htmlable
     {
         return translate(static::$title);
     }
