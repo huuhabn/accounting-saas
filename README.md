@@ -35,6 +35,17 @@ php artisan filament:assets
 npm run build
 npm run dev
 ```
+## Install admin panel
+
+```bash
+php artisan lunar:install
+```
+
+## Shop seeding
+
+```bash
+php artisan db:seed --class="Database\Seeders\Admin\AdminDemoSeeder"
+```
 
 ## Database seeding
 
@@ -188,7 +199,7 @@ To integrate [Plaid](https://plaid.com/) with your application for enhanced fina
 PLAID_CLIENT_ID=your-client-id
 PLAID_CLIENT_SECRET=your-secret
 PLAID_ENVIRONMENT=sandbox # Can be sandbox, development, or production
-PLAID_WEBHOOK_URL=https://my-static-domain.ngrok-free.app/api/plaid/webhook # Must have /api/plaid/webhook appended
+PLAID_WEBHOOK_URL=https://394e-2405-4803-db3c-4060-44f-161d-89a4-ce07.ngrok-free.app/api/plaid/webhook # Must have /api/plaid/webhook appended
 ```
 
 The `PLAID_WEBHOOK_URL` is essential as it enables your application to receive real-time updates on transactions from connected bank accounts. This webhook URL must contain a static domain, which can be obtained from services like ngrok that offer a free static domain upon signup. Alternatively, you may use any other service that provides a static domain.
