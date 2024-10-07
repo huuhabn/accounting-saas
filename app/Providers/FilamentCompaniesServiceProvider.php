@@ -103,8 +103,6 @@ class FilamentCompaniesServiceProvider extends PanelProvider
             )
             ->plugin(
                 PanelShiftDropdown::make()
-                    ->logoutItem()
-                    ->companySettings()
                     ->navigation(function (NavigationBuilder $builder): NavigationBuilder {
                         return $builder
                             ->items(Account::getNavigationItems());
