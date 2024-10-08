@@ -1,71 +1,70 @@
 <?php
 
-namespace App\Providers;
+namespace App\Providers\Filament;
 
-use App\Actions\FilamentCompanies\AddCompanyEmployee;
-use App\Actions\FilamentCompanies\CreateConnectedAccount;
-use App\Actions\FilamentCompanies\CreateNewUser;
-use App\Actions\FilamentCompanies\CreateUserFromProvider;
-use App\Actions\FilamentCompanies\DeleteCompany;
-use App\Actions\FilamentCompanies\DeleteUser;
-use App\Actions\FilamentCompanies\HandleInvalidState;
-use App\Actions\FilamentCompanies\InviteCompanyEmployee;
-use App\Actions\FilamentCompanies\RemoveCompanyEmployee;
-use App\Actions\FilamentCompanies\ResolveSocialiteUser;
-use App\Actions\FilamentCompanies\SetUserPassword;
-use App\Actions\FilamentCompanies\UpdateCompanyName;
-use App\Actions\FilamentCompanies\UpdateConnectedAccount;
-use App\Actions\FilamentCompanies\UpdateUserPassword;
-use App\Actions\FilamentCompanies\UpdateUserProfileInformation;
+use Exception;
+use Filament\Forms;
+use Filament\Pages;
+use Filament\Panel;
+use Filament\Tables;
+use Filament\Actions;
+use Filament\Widgets;
+use App\Models\Company;
+use Filament\PanelProvider;
+use Filament\Pages\Dashboard;
+use App\Livewire\UpdatePassword;
+use Filament\Support\Colors\Color;
+use Filament\Forms\Components\Select;
+use App\Filament\Company\Pages\Reports;
+use App\Filament\User\Clusters\Account;
+use Filament\Navigation\NavigationGroup;
+use App\Livewire\UpdateProfileInformation;
+use Filament\Http\Middleware\Authenticate;
+use Filament\Navigation\NavigationBuilder;
+use Wallo\FilamentCompanies\Enums\Feature;
 use App\Filament\Company\Clusters\Settings;
-use App\Filament\Company\Pages\Accounting\AccountChart;
-use App\Filament\Company\Pages\Accounting\Transactions;
+use Wallo\FilamentCompanies\Enums\Provider;
+use App\Actions\FilamentCompanies\DeleteUser;
 use App\Filament\Company\Pages\CreateCompany;
 use App\Filament\Company\Pages\ManageCompany;
-use App\Filament\Company\Pages\Reports;
-use App\Filament\Company\Pages\Service\ConnectedAccount;
-use App\Filament\Company\Pages\Service\LiveCurrency;
-use App\Filament\Company\Resources\Banking\AccountResource;
-use App\Filament\Company\Resources\Core\DepartmentResource;
-use App\Filament\Components\PanelShiftDropdown;
-use App\Filament\User\Clusters\Account;
-use App\Http\Middleware\ConfigureCurrentCompany;
-use App\Livewire\UpdatePassword;
-use App\Livewire\UpdateProfileInformation;
-use App\Models\Company;
+use Wallo\FilamentCompanies\Pages\Auth\Login;
 use App\Support\FilamentComponentConfigurator;
-use Exception;
-use Filament\Actions;
-use Filament\Forms;
-use Filament\Forms\Components\Select;
-use Filament\Http\Middleware\Authenticate;
-use Filament\Http\Middleware\DisableBladeIconComponents;
-use Filament\Http\Middleware\DispatchServingFilamentEvent;
-use Filament\Navigation\NavigationBuilder;
-use Filament\Navigation\NavigationGroup;
-use Filament\Navigation\NavigationItem;
-use Filament\Pages;
-use Filament\Pages\Dashboard;
-use Filament\Panel;
-use Filament\PanelProvider;
-use Filament\Support\Colors\Color;
-use Filament\Tables;
-use Filament\Widgets;
-use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
+use Wallo\FilamentCompanies\FilamentCompanies;
+use App\Filament\Components\PanelShiftDropdown;
+use Illuminate\Session\Middleware\StartSession;
+use App\Actions\FilamentCompanies\CreateNewUser;
+use App\Actions\FilamentCompanies\DeleteCompany;
+use App\Http\Middleware\ConfigureCurrentCompany;
 use Illuminate\Cookie\Middleware\EncryptCookies;
-use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
+use Wallo\FilamentCompanies\Pages\Auth\Register;
+use App\Actions\FilamentCompanies\SetUserPassword;
+use App\Actions\FilamentCompanies\UpdateCompanyName;
+use App\Filament\Company\Pages\Service\LiveCurrency;
+use App\Actions\FilamentCompanies\AddCompanyEmployee;
+use App\Actions\FilamentCompanies\HandleInvalidState;
+use App\Actions\FilamentCompanies\UpdateUserPassword;
 use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\AuthenticateSession;
-use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
+use App\Actions\FilamentCompanies\ResolveSocialiteUser;
+use App\Filament\Company\Pages\Accounting\AccountChart;
+use App\Filament\Company\Pages\Accounting\Transactions;
+use App\Actions\FilamentCompanies\InviteCompanyEmployee;
+use App\Actions\FilamentCompanies\RemoveCompanyEmployee;
+use App\Filament\Company\Pages\Service\ConnectedAccount;
+use Filament\Http\Middleware\DisableBladeIconComponents;
+use App\Actions\FilamentCompanies\CreateConnectedAccount;
+use App\Actions\FilamentCompanies\CreateUserFromProvider;
+use App\Actions\FilamentCompanies\UpdateConnectedAccount;
+use Filament\Http\Middleware\DispatchServingFilamentEvent;
+use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
+use App\Filament\Company\Resources\Banking\AccountResource;
+use App\Filament\Company\Resources\Core\DepartmentResource;
+use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
+use App\Actions\FilamentCompanies\UpdateUserProfileInformation;
 use Wallo\FilamentCompanies\Actions\GenerateRedirectForProvider;
-use Wallo\FilamentCompanies\Enums\Feature;
-use Wallo\FilamentCompanies\Enums\Provider;
-use Wallo\FilamentCompanies\FilamentCompanies;
-use Wallo\FilamentCompanies\Pages\Auth\Login;
-use Wallo\FilamentCompanies\Pages\Auth\Register;
 
-class FilamentCompaniesServiceProvider extends PanelProvider
+class CompanyPanelProvider extends PanelProvider
 {
     /**
      * @throws Exception
@@ -184,7 +183,8 @@ class FilamentCompaniesServiceProvider extends PanelProvider
             ], isPersistent: true)
             ->authMiddleware([
                 Authenticate::class,
-            ]);
+            ])
+            ->sidebarCollapsibleOnDesktop();
     }
 
     /**
