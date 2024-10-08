@@ -33,7 +33,7 @@ class PanelSwitch extends Component
 
     protected string $renderHook = PanelsRenderHook::GLOBAL_SEARCH_AFTER;
 
-    public static function boot(): static
+    public static function make(): static
     {
         $static = app(static::class);
 

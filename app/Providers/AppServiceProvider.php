@@ -46,9 +46,7 @@ class AppServiceProvider extends ServiceProvider
     {
         Notifications::alignment(Alignment::Center);
 
-        Filament::serving(fn () => PanelSwitch::boot()
-            ->simple()
-        );
+        Filament::serving(fn () => PanelSwitch::make()->simple());
 
         FilamentAsset::register([
             Js::make('TopNavigation', __DIR__ . '/../../resources/js/TopNavigation.js'),
