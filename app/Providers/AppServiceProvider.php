@@ -2,16 +2,14 @@
 
 namespace App\Providers;
 
-use App\Filament\Components\PanelSwitch;
+use App\Filament\Components\PanelSwitcher;
 use App\Services\DateRangeService;
-use Filament\Facades\Filament;
 use Filament\Http\Responses\Auth\Contracts\LoginResponse;
 use Filament\Notifications\Livewire\Notifications;
 use Filament\Panel;
 use Filament\Support\Assets\Js;
 use Filament\Support\Enums\Alignment;
 use Filament\Support\Facades\FilamentAsset;
-use Filament\View\PanelsRenderHook;
 use HanaSales\FilamentAdvanced\FilamentAdvancedPlugin;
 use Illuminate\Support\ServiceProvider;
 use Lunar\Admin\Support\Facades\LunarPanel;
@@ -46,7 +44,10 @@ class AppServiceProvider extends ServiceProvider
     {
         Notifications::alignment(Alignment::Center);
 
-        Filament::serving(fn () => PanelSwitch::make()->simple());
+        //        PanelSwitcher::configureUsing(function (PanelSwitcher $panelSwitch) {
+        //            $panelSwitch->circle();
+        //        });
+        PanelSwitcher::boot();
 
         FilamentAsset::register([
             Js::make('TopNavigation', __DIR__ . '/../../resources/js/TopNavigation.js'),

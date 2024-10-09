@@ -3,6 +3,7 @@
 namespace App\Providers\Filament;
 
 use App\Filament\Components\PanelShiftDropdown;
+use App\Filament\Components\ThemeSwitcher;
 use App\Filament\User\Clusters\Account;
 use App\Http\Middleware\Authenticate;
 use Exception;
@@ -34,7 +35,7 @@ class UserPanelProvider extends PanelProvider
         return $panel
             ->id('user')
             ->path('user')
-            ->plugin(
+            ->plugins([
                 PanelShiftDropdown::make()
                     ->logoutItem()
                     ->companySettings(false)
@@ -48,7 +49,7 @@ class UserPanelProvider extends PanelProvider
                                     ->url(static fn (): string => Pages\Dashboard::getUrl(panel: 'company', tenant: auth()->user()->personalCompany())),
                             ]);
                     }),
-            )
+            ])
             ->colors([
                 'primary' => Color::Indigo,
             ])

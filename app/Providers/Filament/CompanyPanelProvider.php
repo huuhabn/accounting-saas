@@ -102,7 +102,6 @@ class CompanyPanelProvider extends PanelProvider
                     ),
             )
             ->plugins([
-                ThemeSwitcher::make(),
                 PanelShiftDropdown::make()
                     ->navigation(function (NavigationBuilder $builder): NavigationBuilder {
                         return $builder

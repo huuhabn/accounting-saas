@@ -2,8 +2,8 @@
 
 namespace App\Filament\Components;
 
-use Filament\Panel;
 use Filament\Contracts\Plugin;
+use Filament\Panel;
 use Filament\View\PanelsRenderHook;
 use Illuminate\Contracts\View\View;
 
@@ -29,7 +29,7 @@ class ThemeSwitcher implements Plugin
             $panel->renderHook(
                 name: $this->getRenderHook(),
                 hook: fn (): View => view($this->view, [
-                    'theme_switcher' => $this
+                    'theme_switcher' => $this,
                 ])
             );
         }
@@ -37,11 +37,12 @@ class ThemeSwitcher implements Plugin
 
     public function boot(Panel $panel): void
     {
-        // TODO: Implement boot() method.
+        debugbar()->info('ThemeSwitcher boot');
     }
 
     public function renderHook(string $hook): static
     {
+
         $this->renderHook = $hook;
 
         return $this;

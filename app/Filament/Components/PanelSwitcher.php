@@ -8,32 +8,24 @@ use Filament\Support\Components\Component;
 use Filament\Support\Facades\FilamentView;
 use Filament\View\PanelsRenderHook;
 
-class PanelSwitch extends Component
+class PanelSwitcher extends Component
 {
-    protected static string $view = 'components.panel-switch';
+    protected static string $view = 'components.panel-switcher';
+
     protected array | Closure $excludes = [];
 
     protected bool | Closure | null $visible = null;
 
     protected bool | Closure | null $canSwitchPanel = true;
 
-    protected bool | Closure $isModalSlideOver = false;
+    protected bool | Closure $isCircle = false;
 
-    protected string | Closure | null $modalWidth = null;
-
-    protected bool | Closure $isSimple = true;
-
-    protected array | Closure $icons = [];
-
-    protected int | Closure | null $iconSize = null;
 
     protected array | Closure $labels = [];
 
-    protected string | Closure $modalHeading = 'Switch Panels';
-
     protected string $renderHook = PanelsRenderHook::GLOBAL_SEARCH_AFTER;
 
-    public static function make(): static
+    public static function boot(): static
     {
         $static = app(static::class);
 
@@ -51,8 +43,6 @@ class PanelSwitch extends Component
 
         $static->configure();
 
-        debugbar()->info($static->isSimple(), $static->getRenderHook());
-
         FilamentView::registerRenderHook(
             name: $static->getRenderHook(),
             hook: function () use ($static) {
@@ -61,16 +51,7 @@ class PanelSwitch extends Component
                 }
 
                 return view(static::$view, [
-                    'currentPanel' => $static->getCurrentPanel(),
-                    'canSwitchPanels' => $static->isAbleToSwitchPanels(),
-                    'heading' => $static->getModalHeading(),
-                    'icons' => $static->getIcons(),
-                    'iconSize' => $static->getIconSize(),
-                    'isSimple' => $static->isSimple(),
-                    'isSlideOver' => $static->isModalSlideOver(),
-                    'labels' => $static->getLabels(),
-                    'modalWidth' => $static->getModalWidth(),
-                    'panels' => $static->getPanels(),
+                    'panelSwitcher' => $static,
                 ]);
             },
         );
@@ -92,37 +73,9 @@ class PanelSwitch extends Component
         return $this;
     }
 
-    public function modalHeading(string | Closure $modalHeading): static
-    {
-        $this->modalHeading = $modalHeading;
-
-        return $this;
-    }
-
-    public function icons(array | Closure $icons): static
-    {
-        $this->icons = $icons;
-
-        return $this;
-    }
-
-    public function iconSize(int | Closure | null $size = null): static
-    {
-        $this->iconSize = $size;
-
-        return $this;
-    }
-
     public function labels(array | Closure $labels): static
     {
         $this->labels = $labels;
-
-        return $this;
-    }
-
-    public function modalWidth(string | Closure | null $width = null): static
-    {
-        $this->modalWidth = $width;
 
         return $this;
     }
@@ -134,16 +87,9 @@ class PanelSwitch extends Component
         return $this;
     }
 
-    public function slideOver(bool | Closure $condition = true): static
+    public function circle(bool | Closure $condition = true): static
     {
-        $this->isModalSlideOver = $condition;
-
-        return $this;
-    }
-
-    public function simple(bool | Closure $condition = true): static
-    {
-        $this->isSimple = $condition;
+        $this->isCircle = $condition;
 
         return $this;
     }
@@ -160,29 +106,9 @@ class PanelSwitch extends Component
         return (array) $this->evaluate($this->excludes);
     }
 
-    public function getModalHeading(): string
-    {
-        return (string) $this->evaluate($this->modalHeading);
-    }
-
-    public function getIcons(): array
-    {
-        return (array) $this->evaluate($this->icons);
-    }
-
-    public function getIconSize(): int
-    {
-        return $this->evaluate($this->iconSize) ?? 32;
-    }
-
     public function getLabels(): array
     {
         return (array) $this->evaluate($this->labels);
-    }
-
-    public function getModalWidth(): string
-    {
-        return $this->evaluate($this->modalWidth) ?? 'screen';
     }
 
     public function isAbleToSwitchPanels(): bool
@@ -198,19 +124,14 @@ class PanelSwitch extends Component
         return $this->evaluate($this->canSwitchPanel);
     }
 
-    public function isModalSlideOver(): bool
-    {
-        return (bool) $this->evaluate($this->isModalSlideOver);
-    }
-
-    public function isSimple(): bool
-    {
-        return (bool) $this->evaluate($this->isSimple);
-    }
-
     public function isVisible(): bool
     {
         return (bool) $this->evaluate($this->visible);
+    }
+
+    public function isCircle(): bool
+    {
+        return (bool) $this->evaluate($this->isCircle);
     }
 
     /**
@@ -226,6 +147,30 @@ class PanelSwitch extends Component
     public function getCurrentPanel(): Panel
     {
         return filament()->getCurrentPanel();
+    }
+
+    public function getPanelUrl(Panel $panel): string
+    {
+        $currentPanel = $this->getCurrentPanel();
+        filament()->setCurrentPanel($panel);
+        $panelUrl = $panel->getUrl();
+        filament()->setCurrentPanel($currentPanel);
+
+        return $panelUrl;
+    }
+
+    public function getAvatarUrl(?string $panelName = null): string
+    {
+        if (empty($panelName)) {
+            $currentPanel = $this->getCurrentPanel();
+            $panelName = $currentPanel->getId();
+        }
+
+        $backgroundColor = str(
+            \Spatie\Color\Rgb::fromString('rgb(' . \Filament\Support\Facades\FilamentColor::getColors()['primary'][600] . ')')->toHex()
+        )->after('#');
+
+        return 'https://ui-avatars.com/api/?name=' . urlencode($panelName) . '&color=FFFFFF&background=' . $backgroundColor;
     }
 
     public function getRenderHook(): string

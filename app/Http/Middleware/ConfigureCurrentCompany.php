@@ -22,7 +22,6 @@ class ConfigureCurrentCompany
         $company = Filament::getTenant();
 
         if ($company) {
-            debugbar()->info('dispatch CompanyConfigured');
             CompanyConfigured::dispatch($company);
         }
 
