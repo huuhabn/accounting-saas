@@ -22,6 +22,7 @@ use App\Livewire\UpdateProfileInformation;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Navigation\NavigationBuilder;
 use Wallo\FilamentCompanies\Enums\Feature;
+use App\Filament\Components\ThemeSwitcher;
 use App\Filament\Company\Clusters\Settings;
 use Wallo\FilamentCompanies\Enums\Provider;
 use App\Actions\FilamentCompanies\DeleteUser;
@@ -100,7 +101,8 @@ class CompanyPanelProvider extends PanelProvider
                         features: [Feature::RememberSession, Feature::ProviderAvatars],
                     ),
             )
-            ->plugin(
+            ->plugins([
+                ThemeSwitcher::make(),
                 PanelShiftDropdown::make()
                     ->navigation(function (NavigationBuilder $builder): NavigationBuilder {
                         return $builder
@@ -122,8 +124,8 @@ class CompanyPanelProvider extends PanelProvider
 //                                        ...LiveCurrency::getNavigationItems(),
 //                                    ]),
 //                            ]);
-                    }),
-            )
+                    })
+            ])
             ->colors([
                 'primary' => Color::Indigo,
                 'gray' => Color::Gray,
