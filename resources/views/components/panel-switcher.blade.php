@@ -5,14 +5,15 @@
     $isCircle= $panelSwitcher->isCircle();
     $labels = $panelSwitcher->getLabels();
     $panelName = $labels[$currentPanel->getId()] ?? $currentPanel->getId();
+    $placement = $panelSwitcher->getPosition()->value;
 @endphp
 
 
-<x-filament::dropdown teleport placement="top-start">
+<x-filament::dropdown teleport :placement="$placement">
     <x-slot name="trigger">
         <button
             type="button"
-            class="flex flex-1 -mx-2 items-center justify-center gap-x-3 rounded-lg px-2 py-2 outline-none transition duration-75 hover:bg-gray-100 focus-visible:bg-gray-100 dark:hover:bg-white/5 dark:focus-visible:bg-white/5 bg-gray-100 dark:bg-white/5"
+            class="flex flex-1 items-center justify-center gap-x-3 rounded-lg px-2 py-2 outline-none transition duration-75 hover:bg-gray-100 focus-visible:bg-gray-100 dark:hover:bg-white/5 dark:focus-visible:bg-white/5 bg-gray-100 dark:bg-white/5"
         >
             <x-filament::avatar
                 :src="$panelSwitcher->getAvatarUrl()"

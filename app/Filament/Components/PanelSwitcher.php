@@ -2,6 +2,7 @@
 
 namespace App\Filament\Components;
 
+use App\Enums\DropdownPlacement;
 use Closure;
 use Filament\Panel;
 use Filament\Support\Components\Component;
@@ -24,6 +25,8 @@ class PanelSwitcher extends Component
     protected array | Closure $labels = [];
 
     protected string $renderHook = PanelsRenderHook::GLOBAL_SEARCH_AFTER;
+
+    protected ?DropdownPlacement $position = null;
 
     public static function boot(): static
     {
@@ -99,6 +102,18 @@ class PanelSwitcher extends Component
         $this->visible = $visible;
 
         return $this;
+    }
+
+    public function position(DropdownPlacement $position): static
+    {
+        $this->position = $position;
+
+        return $this;
+    }
+
+    public function getPosition(): DropdownPlacement
+    {
+        return $this->position ?? DropdownPlacement::BottomEnd;
     }
 
     public function getExcludes(): array
