@@ -25,6 +25,7 @@ class AppServiceProvider extends ServiceProvider
         LunarPanel::panel(
             function (Panel $panel) {
                 return $panel
+                    ->path('store')
                     ->plugins([
                         new ShippingPlugin,
                         FilamentAdvancedPlugin::make()

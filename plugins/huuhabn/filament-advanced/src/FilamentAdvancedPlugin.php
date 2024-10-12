@@ -93,7 +93,7 @@ class FilamentAdvancedPlugin implements Plugin
     protected function getImage(): Image
     {
         return Cache::remember(
-            'fa-backgroundss:image:' . $this->panel->getId(),
+            'fa-backgrounds:image:' . $this->panel->getId(),
             $this->ttl,
             fn () => $this->bg_type == 'svg' ? BgImage::make()->getTrianglesImage() : BgImage::make()->getImage()
         );
