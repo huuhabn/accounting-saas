@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Core\Department;
+use Lunar\Base\Traits\LunarUser;
 use Filament\Models\Contracts\FilamentUser;
 use Filament\Models\Contracts\HasAvatar;
 use Filament\Models\Contracts\HasDefaultTenant;
@@ -29,6 +30,7 @@ class User extends Authenticatable implements FilamentUser, HasAvatar, HasDefaul
     use HasProfilePhoto;
     use Notifiable;
     use SetsProfilePhotoFromUrl;
+    use LunarUser;
 
     /**
      * The attributes that are mass assignable.
