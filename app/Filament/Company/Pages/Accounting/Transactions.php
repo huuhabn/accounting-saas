@@ -498,7 +498,7 @@ class Transactions extends Page implements HasTable
         ];
     }
 
-    protected static function getUncategorizedAccountByType(TransactionType $type): ?Account
+    public static function getUncategorizedAccountByType(TransactionType $type): ?Account
     {
         [$category, $accountName] = match ($type) {
             TransactionType::Deposit => [AccountCategory::Revenue, 'Uncategorized Income'],
