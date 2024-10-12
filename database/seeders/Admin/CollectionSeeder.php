@@ -23,7 +23,8 @@ class CollectionSeeder extends AbstractSeeder
 
         DB::transaction(function () use ($collections, $collectionGroup) {
             foreach ($collections as $collection) {
-                Collection::create([
+
+                $collectionModel = Collection::create([
                     'collection_group_id' => $collectionGroup->id,
                     'attribute_data' => [
                         'name' => new TranslatedText([
@@ -34,6 +35,13 @@ class CollectionSeeder extends AbstractSeeder
                         ]),
                     ],
                 ]);
+
+                $imgPath = base_path("database/seeders/data/images/collections/{$collection->image}");
+                if (file_exists($imgPath)) {
+                    $media = $collectionModel->addMedia($imgPath)->preservingOriginal()->toMediaCollection('collections');
+                    $media->setCustomProperty('primary', true);
+                    $media->save();
+                }
             }
         });
     }

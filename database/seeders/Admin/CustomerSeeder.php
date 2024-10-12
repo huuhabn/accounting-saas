@@ -2,9 +2,9 @@
 
 namespace Database\Seeders\Admin;
 
+use Faker\Factory;
 use App\Models\User;
 use Database\Seeders\AbstractSeeder;
-use Faker\Factory;
 use Illuminate\Support\Facades\DB;
 use Lunar\Models\Address;
 use Lunar\Models\Customer;
@@ -18,41 +18,43 @@ class CustomerSeeder extends AbstractSeeder
     {
         DB::transaction(function () {
             $faker = Factory::create();
+
             $customers = Customer::factory(100)->create();
 
             foreach ($customers as $customer) {
-                for ($i = 0; $i < $faker->numberBetween(1, 10); $i++) {
-                    $user = User::factory()->create();
+                $users = User::factory($faker->numberBetween(1, 10))->create();
+                $customer->users()->attach($users);
 
-                    $customer->users()->attach($user);
-                }
+                $addressesData = [
+                    [
+                        'shipping_default' => true,
+                        'billing_default' => false,
+                        'country_id' => 235,
+                        'customer_id' => $customer->id,
+                    ],
+                    [
+                        'shipping_default' => false,
+                        'billing_default' => false,
+                        'country_id' => 235,
+                        'customer_id' => $customer->id,
+                    ],
+                    [
+                        'shipping_default' => false,
+                        'billing_default' => true,
+                        'country_id' => 235,
+                        'customer_id' => $customer->id,
+                    ],
+                    [
+                        'shipping_default' => false,
+                        'billing_default' => false,
+                        'country_id' => 235,
+                        'customer_id' => $customer->id,
+                    ],
+                ];
 
-                Address::factory()->create([
-                    'shipping_default' => true,
-                    'country_id' => 235,
-                    'customer_id' => $customer->id,
-                ]);
-
-                Address::factory()->create([
-                    'shipping_default' => false,
-                    'country_id' => 235,
-                    'customer_id' => $customer->id,
-                ]);
-
-                Address::factory()->create([
-                    'shipping_default' => false,
-                    'billing_default' => true,
-                    'country_id' => 235,
-                    'customer_id' => $customer->id,
-                ]);
-
-                Address::factory()->create([
-                    'shipping_default' => false,
-                    'billing_default' => false,
-                    'country_id' => 235,
-                    'customer_id' => $customer->id,
-                ]);
+                Address::factory()->createMany($addressesData);
             }
         });
     }
+
 }

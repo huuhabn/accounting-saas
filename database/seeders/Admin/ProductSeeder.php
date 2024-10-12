@@ -90,19 +90,28 @@ class ProductSeeder extends AbstractSeeder
                     Price::create([
                         'customer_group_id' => null,
                         'currency_id' => $currency->id,
-                        'priceable_type' => (new ProductVariant)->getMorphClass(),
+                        'priceable_type' => 'product_variant',
                         'priceable_id' => $variant->id,
                         'price' => $product->price,
                         'min_quantity' => 1,
                     ]);
                 }
 
-                $media = $productModel->addMedia(
-                    base_path("database/seeders/data/images/{$product->image}")
-                )->preservingOriginal()->toMediaCollection('images');
+                $images = is_array($product->image) ? $product->image : [$product->image];
 
-                $media->setCustomProperty('primary', true);
-                $media->save();
+                $count = 0;
+
+                foreach ($images as $image) {
+                    $count++;
+                    $imgPath = base_path("database/seeders/data/images/{$image}");
+
+                    if (file_exists($imgPath)) {
+                        $media = $productModel->addMedia($imgPath)->preservingOriginal()->toMediaCollection('images');
+
+                        $media->setCustomProperty('primary', $count == 1);
+                        $media->save();
+                    }
+                }
 
                 $collections->each(function ($coll) use ($product, $productModel) {
                     if (in_array(strtolower($coll->translateAttribute('name')), $product->collections)) {
@@ -140,7 +149,7 @@ class ProductSeeder extends AbstractSeeder
                             'label' => [
                                 'en' => $option->name,
                             ],
-                            'shared' => $option->shared ?? 1,
+                            'shared' => $option->shared,
                             'handle' => Str::slug($option->name),
                         ]);
                     }
@@ -189,7 +198,7 @@ class ProductSeeder extends AbstractSeeder
                             'purchasable' => 'always',
                             'shippable' => true,
                             'backorder' => 0,
-                            'sku' => $variant['sku'],
+                            'sku' => Str::slug($variant['sku']),
                             'tax_class_id' => $taxClass->id,
                             'stock' => 500,
                         ]);
@@ -201,7 +210,7 @@ class ProductSeeder extends AbstractSeeder
                     Price::create([
                         'customer_group_id' => null,
                         'currency_id' => $currency->id,
-                        'priceable_type' => (new ProductVariant)->getMorphClass(),
+                        'priceable_type' => 'product_variant',
                         'priceable_id' => $variant['variant_id'],
                         'price' => $variant['price'],
                         'min_quantity' => 1,

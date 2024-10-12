@@ -8,7 +8,7 @@ use OutOfBoundsException;
 
 class CurrencyCode extends Base
 {
-    public function currencyCode(string $countryCode): string
+    public function currencyCode(string $countryCode = 'GB'): string
     {
         try {
             return Country::where('id', $countryCode)->pluck('currency_code')->first();

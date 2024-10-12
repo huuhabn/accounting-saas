@@ -7,7 +7,7 @@ use Faker\Provider\PhoneNumber as BasePhoneNumber;
 
 class PhoneNumber extends BasePhoneNumber
 {
-    public function phoneNumberForCountryCode(string $countryCode): string
+    public function phoneNumberForCountryCode(string $countryCode = 'GB'): string
     {
         $phoneCode = Country::where('id', $countryCode)->pluck('phone_code')->first();
 

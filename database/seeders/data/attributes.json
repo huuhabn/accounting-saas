@@ -1,9 +1,9 @@
 [
     {
-        "name": "Details",
-        "handle": "details",
-        "type": "Lunar\\FieldTypes\\ListField",
-        "attribute_type": "Lunar\\Models\\Product",
+        "name": "Product Details",
+        "handle": "product_details",
+        "type": "Lunar\\FieldTypes\\TranslatedText",
+        "attribute_type": "product",
         "configuration": {}
     }
 ]

@@ -1,6 +1,6 @@
 # Sale SAAS
 
-This repo is currently a work in progress — PRs and issues welcome!
+This repo is currently a work in progress on `dev` branch
 
 # Getting started
 
@@ -29,40 +29,25 @@ Run the database migrations (**Set the database connection in .env before migrat
 php artisan migrate
 ```
 
-Build your assets & start the local development server
-
-```bash
-php artisan filament:assets
-npm run build
-npm run dev
-```
 ## Install admin panel
 
 ```bash
 php artisan lunar:install
 ```
 
-## Shop seeding
-
-```bash
-php artisan db:seed --class="Database\Seeders\Admin\AdminDemoSeeder"
-```
-
 ## Database seeding
 
-Default login information:
-
-    email: admin@gmail.com
-    password: password
-
 Run the database seeder
+```bash
+php artisan db:seed
+```
 
-    php artisan db:seed
-
-***Note***: It's recommended to have a clean database before seeding. You can reset your database to a clean state at
-any point by running the following command:
-
-    php artisan migrate:fresh
+## Processing jobs
+-  Translations
+-  Media conversions
+```bash
+php artisan queue:work
+```
 
 ## Language Generator
 

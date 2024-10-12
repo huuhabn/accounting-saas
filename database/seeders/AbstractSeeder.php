@@ -40,4 +40,6 @@ abstract class AbstractSeeder extends Seeder
 
         return $items;
     }
+
+
 }

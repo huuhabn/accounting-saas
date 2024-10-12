@@ -1,6 +1,6 @@
 {
-    "name": "hs/inventory",
-    "description": "Inventory product management",
+    "name": "huuhabn/inventory",
+    "description": "Inventory product management for lunar",
     "keywords": [
         "HS",
         "laravel",

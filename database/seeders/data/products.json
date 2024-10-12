@@ -1,7 +1,7 @@
 [
     {
         "attributes": {
-            "name": "Levi's® 501® Straight Fit Jeans",
+            "name": "Levi's Straight Fit Jeans",
             "description": "A cultural icon worn by generations, defining style for decades. The iconic straight fit with the signature button fly. Since Levi's® invented it in 1873, people have made them their own by ripping, tearing, repairing, dying and marking them up for total "
         },
         "collections": ["trousers", "sale"],
@@ -12,12 +12,8 @@
         "options": [
             {
                 "name": "Size",
-                "values": [
-                    "30 S (L30)",
-                    "32 S (L30)",
-                    "34 S (L30)",
-                    "36 S (L30)"
-                ]
+                "shared": false,
+                "values": ["30 S (L30)", "32 S (L30)", "34 S (L30)", "36 S (L30)"]
             }
         ]
     },
@@ -41,6 +37,7 @@
         "options": [
             {
                 "name": "Shoe Size",
+                "shared": true,
                 "values": ["UK 5", "UK 6", "UK 7", "UK 8", "UK 9", "UK 10"]
             }
         ]
@@ -58,6 +55,7 @@
         "options": [
             {
                 "name": "Shoe Size",
+                "shared": true,
                 "values": ["UK 5", "UK 6", "UK 7", "UK 8", "UK 9", "UK 10"]
             }
         ]
@@ -108,6 +106,7 @@
         "options": [
             {
                 "name": "Shoe Size",
+                "shared": true,
                 "values": ["UK 5", "UK 6", "UK 7", "UK 8", "UK 9", "UK 10"]
             }
         ]
@@ -147,6 +146,7 @@
         "options": [
             {
                 "name": "Shoe Size",
+                "shared": true,
                 "values": ["UK 5", "UK 6", "UK 7", "UK 8", "UK 9", "UK 10"]
             }
         ]
@@ -164,6 +164,7 @@
         "options": [
             {
                 "name": "Shoe Size",
+                "shared": true,
                 "values": ["UK 5", "UK 6", "UK 7", "UK 8", "UK 9", "UK 10"]
             }
         ]
@@ -192,11 +193,54 @@
         "options": [
             {
                 "name": "Colour",
+                "shared": true,
                 "values": ["Black", "Blue", "Red", "Green"]
             },
             {
                 "name": "Size",
+                "shared": true,
                 "values": ["Small", "Medium", "Large", "X-Large"]
+            }
+        ]
+    },
+    {
+        "attributes": {
+            "name": "iPhone 11",
+            "description": "The iPhone 11 features an all-new dual-camera system that takes your photos to a whole new level. The Ultra Wide camera captures shots that are four times wider than any taken with previous iPhones. The new Night Mode delivers natural low-light shots – automatically. It runs with the A13 Bionic, the fastest chip in any smartphone and has an all-day battery life. It comes in six stunning new colours with a new, strengthened front and back glass."
+        },
+        "collections": ["phone"],
+        "sku": "iphone-11",
+        "price": "30000",
+        "image": ["iphone_11_black.png", "iphone_11_white.png", "iphone_11_green.jpg", "iphone_11_red.jpg"],
+        "brand": "Apple",
+        "options": [
+            {
+                "name": "Colour",
+                "shared": true,
+                "values": ["Black", "White", "Red", "Green"]
+            },
+            {
+                "name": "Capacity",
+                "shared": true,
+                "values": ["64 GB", "128 GB", "256 GB", "512 GB", "1 TB"]
+            }
+        ]
+    },
+    {
+        "attributes": {
+            "name": "Samsung Galaxy A55 5G",
+            "description": "Meet the Galaxy A55 5G. The simple yet improved Galaxy A series comes in an iconic design featuring a 3-camera layout in a metal flat frame design for an easy and intuitive grip. Plus, it’s built with Corning Gorilla Glass Victus+ making it tougher and more damage-resistant. The big pixel camera absorbs more light for bright, sharp, and accurate colours with low noise at night to give you awesome Nightography. Snap crisp, detailed shots with the 50MP high-resolution Wide-angle camera. Catch tiny details and dynamic colours for a new visual experience. Perfect for capturing all your share-worthy moments. The 32MP Selfie camera allows you to capture high-quality selfies with options to choose warm or natural tones. Utilize Portrait Mode to elevate your pictures, sharpening focus on the subject with precise bokeh and background blur effects. Capture the world in Super HDR with videos that shine in different lighting conditions, thanks to optimised colour and contrast. Record precise and smooth motion with OIS and VDIS stabilisation in 4K. Take advantage of the improved Octa-core processor and effortlessly multi-task, game, and stream. The 6.6-inch FHD+ Super AMOLED display provides an immersive experience. Vision Booster enhances visibility by optimising colour and contrast under the sun. Get a vivid display with 1,000 nits. And up to 120Hz adaptive refresh rate for a more responsive experience. Boundless power at your fingertips with our 5,000mAh (typical) Super Fast Charging battery. Stay connected longer, charge faster, and live life on your terms."
+        },
+        "collections": ["phone"],
+        "sku": "SS-SM-A556",
+        "price": "59900",
+        "image": ["samsung-galaxy-a55-5g-blue.jpg", "samsung-galaxy-a55-5g-black.jpg", "samsung-galaxy-a55-5g-violet.jpg"],
+        "brand": "SamSung",
+        "options": [
+            {
+                "name": "Colour",
+                "shared": true,
+                "values": ["Black", "Violet", "Green"]
             }
         ]
     }

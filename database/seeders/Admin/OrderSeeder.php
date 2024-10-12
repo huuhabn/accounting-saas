@@ -32,8 +32,6 @@ class OrderSeeder extends Seeder
             $channel = Channel::getDefault();
             $currency = Currency::getDefault();
 
-            $cardTypes = ['visa', 'mastercard'];
-
             for ($i = 0; $i < 201; $i++) {
                 $generator = app(OrderReferenceGenerator::class);
 
