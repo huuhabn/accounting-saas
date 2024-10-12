@@ -112,7 +112,7 @@ class AccountTransactions extends BaseReportPage
             ->toArray();
 
         $allAccountsOption = [
-            'All Accounts' => ['all' => 'All Accounts'],
+            'All Accounts' => ['all' => translate('All Accounts')],
         ];
 
         return $allAccountsOption + $accounts;

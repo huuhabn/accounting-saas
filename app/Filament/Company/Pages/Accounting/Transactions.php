@@ -94,8 +94,8 @@ class Transactions extends Page implements HasTable
             $this->buildTransactionAction('addIncome', 'Add Income', TransactionType::Deposit),
             $this->buildTransactionAction('addExpense', 'Add Expense', TransactionType::Withdrawal),
             Actions\CreateAction::make('addTransfer')
-                ->label('Add Transfer')
-                ->modalHeading('Add Transfer')
+                ->label(translate('Add Transfer'))
+                ->modalHeading(translate('Add Transfer'))
                 ->modalWidth(MaxWidth::ThreeExtraLarge)
                 ->model(static::getModel())
                 ->fillForm(fn (): array => $this->getFormDefaultsForType(TransactionType::Transfer))
@@ -104,22 +104,22 @@ class Transactions extends Page implements HasTable
                 ->outlined(),
             Actions\ActionGroup::make([
                 Actions\CreateAction::make('addJournalTransaction')
-                    ->label('Add Journal Transaction')
+                    ->label(translate('Add Journal Transaction'))
                     ->fillForm(fn (): array => $this->getFormDefaultsForType(TransactionType::Journal))
                     ->modalWidth(MaxWidth::Screen)
                     ->model(static::getModel())
                     ->form(fn (Form $form) => $this->journalTransactionForm($form))
                     ->modalSubmitAction(fn (Actions\StaticAction $action) => $action->disabled(! $this->isJournalEntryBalanced()))
                     ->groupedIcon(null)
-                    ->modalHeading('Journal Entry')
+                    ->modalHeading(translate('Journal Entry'))
                     ->mutateFormDataUsing(static fn (array $data) => array_merge($data, ['type' => TransactionType::Journal]))
                     ->afterFormFilled(fn () => $this->resetJournalEntryAmounts())
                     ->after(fn (Transaction $transaction) => $transaction->updateAmountIfBalanced()),
                 Actions\Action::make('connectBank')
-                    ->label('Connect Your Bank')
+                    ->label(translate('Connect Your Bank'))
                     ->url(ConnectedAccount::getUrl()),
             ])
-                ->label('More')
+                ->label(translate('More'))
                 ->button()
                 ->outlined()
                 ->dropdownWidth('max-w-fit')
@@ -135,12 +135,12 @@ class Transactions extends Page implements HasTable
         return $form
             ->schema([
                 Forms\Components\DatePicker::make('posted_at')
-                    ->label('Date')
+                    ->label(translate('Date'))
                     ->required(),
                 Forms\Components\TextInput::make('description')
-                    ->label('Description'),
+                    ->label(translate('Description')),
                 Forms\Components\Select::make('bank_account_id')
-                    ->label('From Account')
+                    ->label(translate('From Account'))
                     ->options(fn (Get $get, ?Transaction $transaction) => $this->getBankAccountOptions(excludedAccountId: $get('account_id'), currentBankAccountId: $transaction?->bank_account_id))
                     ->live()
                     ->searchable()
@@ -157,7 +157,7 @@ class Transactions extends Page implements HasTable
                     })
                     ->required(),
                 Forms\Components\Select::make('type')
-                    ->label('Type')
+                    ->label(translate('Type'))
                     ->options([
                         TransactionType::Transfer->value => TransactionType::Transfer->getLabel(),
                     ])
@@ -165,17 +165,17 @@ class Transactions extends Page implements HasTable
                     ->dehydrated()
                     ->required(),
                 Forms\Components\TextInput::make('amount')
-                    ->label('Amount')
+                    ->label(translate('Amount'))
                     ->money(static fn (Forms\Get $get) => BankAccount::find($get('bank_account_id'))?->account?->currency_code ?? CurrencyAccessor::getDefaultCurrency())
                     ->required(),
                 Forms\Components\Select::make('account_id')
-                    ->label('To Account')
+                    ->label(translate('To Account'))
                     ->live()
                     ->options(fn (Get $get, ?Transaction $transaction) => $this->getBankAccountAccountOptions(excludedBankAccountId: $get('bank_account_id'), currentAccountId: $transaction?->account_id))
                     ->searchable()
                     ->required(),
                 Forms\Components\Textarea::make('notes')
-                    ->label('Notes')
+                    ->label(translate('Notes'))
                     ->autosize()
                     ->rows(10)
                     ->columnSpanFull(),
@@ -188,12 +188,12 @@ class Transactions extends Page implements HasTable
         return $form
             ->schema([
                 Forms\Components\DatePicker::make('posted_at')
-                    ->label('Date')
+                    ->label(translate('Date'))
                     ->required(),
                 Forms\Components\TextInput::make('description')
-                    ->label('Description'),
+                    ->label(translate('Description')),
                 Forms\Components\Select::make('bank_account_id')
-                    ->label('Account')
+                    ->label(translate('Account'))
                     ->options(fn (?Transaction $transaction) => $this->getBankAccountOptions(currentBankAccountId: $transaction?->bank_account_id))
                     ->live()
                     ->searchable()
@@ -210,7 +210,7 @@ class Transactions extends Page implements HasTable
                     })
                     ->required(),
                 Forms\Components\Select::make('type')
-                    ->label('Type')
+                    ->label(translate('Type'))
                     ->live()
                     ->options([
                         TransactionType::Deposit->value => TransactionType::Deposit->getLabel(),
@@ -219,17 +219,17 @@ class Transactions extends Page implements HasTable
                     ->required()
                     ->afterStateUpdated(static fn (Forms\Set $set, $state) => $set('account_id', static::getUncategorizedAccountByType(TransactionType::parse($state))?->id)),
                 Forms\Components\TextInput::make('amount')
-                    ->label('Amount')
+                    ->label(translate('Amount'))
                     ->money(static fn (Forms\Get $get) => BankAccount::find($get('bank_account_id'))?->account?->currency_code ?? CurrencyAccessor::getDefaultCurrency())
                     ->required(),
                 Forms\Components\Select::make('account_id')
-                    ->label('Category')
+                    ->label(translate('Category'))
                     ->options(fn (Forms\Get $get, ?Transaction $transaction) => $this->getChartAccountOptions(type: TransactionType::parse($get('type')), nominalAccountsOnly: true, currentAccountId: $transaction?->account_id))
                     ->searchable()
                     ->preload()
                     ->required(),
                 Forms\Components\Textarea::make('notes')
-                    ->label('Notes')
+                    ->label(translate('Notes'))
                     ->autosize()
                     ->rows(10)
                     ->columnSpanFull(),
@@ -275,19 +275,19 @@ class Transactions extends Page implements HasTable
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('description')
-                    ->label('Description')
+                    ->label(translate('Description'))
                     ->limit(30)
                     ->toggleable(),
                 Tables\Columns\TextColumn::make('bankAccount.account.name')
-                    ->label('Account')
+                    ->label(translate('Account'))
                     ->toggleable(),
                 Tables\Columns\TextColumn::make('account.name')
-                    ->label('Category')
+                    ->label(translate('Category'))
                     ->prefix(static fn (Transaction $transaction) => $transaction->type->isTransfer() ? 'Transfer to ' : null)
                     ->toggleable()
                     ->state(static fn (Transaction $transaction) => $transaction->account->name ?? 'Journal Entry'),
                 Tables\Columns\TextColumn::make('amount')
-                    ->label('Amount')
+                    ->label(translate('Amount'))
                     ->weight(static fn (Transaction $transaction) => $transaction->reviewed ? null : FontWeight::SemiBold)
                     ->color(
                         static fn (Transaction $transaction) => match ($transaction->type) {
@@ -303,20 +303,20 @@ class Transactions extends Page implements HasTable
             ->defaultSort('posted_at', 'desc')
             ->filters([
                 Tables\Filters\SelectFilter::make('bank_account_id')
-                    ->label('Account')
+                    ->label(translate('Account'))
                     ->searchable()
                     ->options(fn () => $this->getBankAccountOptions(false)),
                 Tables\Filters\SelectFilter::make('account_id')
-                    ->label('Category')
+                    ->label(translate('Category'))
                     ->multiple()
                     ->options(fn () => $this->getChartAccountOptions(nominalAccountsOnly: false)),
                 Tables\Filters\TernaryFilter::make('reviewed')
-                    ->label('Status')
+                    ->label(translate('Status'))
                     ->native(false)
                     ->trueLabel('Reviewed')
                     ->falseLabel('Not Reviewed'),
                 Tables\Filters\SelectFilter::make('type')
-                    ->label('Type')
+                    ->label(translate('Type'))
                     ->native(false)
                     ->options(TransactionType::class),
                 $this->buildDateRangeFilter('posted_at', 'Posted', true),
@@ -365,7 +365,7 @@ class Transactions extends Page implements HasTable
             )
             ->actions([
                 Tables\Actions\Action::make('markAsReviewed')
-                    ->label('Mark as Reviewed')
+                    ->label(translate('Mark as Reviewed'))
                     ->view('filament.company.components.tables.actions.mark-as-reviewed')
                     ->icon(static fn (Transaction $transaction) => $transaction->reviewed ? 'heroicon-s-check-circle' : 'heroicon-o-check-circle')
                     ->color(static fn (Transaction $transaction, Tables\Actions\Action $action) => match (static::determineTransactionState($transaction, $action)) {
@@ -382,20 +382,20 @@ class Transactions extends Page implements HasTable
                     ->action(fn (Transaction $transaction) => $transaction->update(['reviewed' => ! $transaction->reviewed])),
                 Tables\Actions\ActionGroup::make([
                     Tables\Actions\EditAction::make('updateTransaction')
-                        ->label('Edit Transaction')
-                        ->modalHeading('Edit Transaction')
+                        ->label(translate('Edit Transaction'))
+                        ->modalHeading(translate('Edit Transaction'))
                         ->modalWidth(MaxWidth::ThreeExtraLarge)
                         ->form(fn (Form $form) => $this->transactionForm($form))
                         ->visible(static fn (Transaction $transaction) => $transaction->type->isStandard()),
                     Tables\Actions\EditAction::make('updateTransfer')
-                        ->label('Edit Transfer')
-                        ->modalHeading('Edit Transfer')
+                        ->label(translate('Edit Transfer'))
+                        ->modalHeading(translate('Edit Transfer'))
                         ->modalWidth(MaxWidth::ThreeExtraLarge)
                         ->form(fn (Form $form) => $this->transferForm($form))
                         ->visible(static fn (Transaction $transaction) => $transaction->type->isTransfer()),
                     Tables\Actions\EditAction::make('updateJournalTransaction')
-                        ->label('Edit Journal Transaction')
-                        ->modalHeading('Journal Entry')
+                        ->label(translate('Edit Journal Transaction'))
+                        ->modalHeading(translate('Journal Entry'))
                         ->modalWidth(MaxWidth::Screen)
                         ->form(fn (Form $form) => $this->journalTransactionForm($form))
                         ->afterFormFilled(function (Transaction $transaction) {
@@ -413,7 +413,7 @@ class Transactions extends Page implements HasTable
                         ->excludeAttributes(['created_by', 'updated_by', 'created_at', 'updated_at'])
                         ->modal(false)
                         ->beforeReplicaSaved(static function (Transaction $replica) {
-                            $replica->description = '(Copy of) ' . $replica->description;
+                            $replica->description = '('.translate('Copy of').') ' . $replica->description;
                         })
                         ->after(static function (Transaction $original, Transaction $replica) {
                             $original->journalEntries->each(function (JournalEntry $entry) use ($replica) {
@@ -430,7 +430,7 @@ class Transactions extends Page implements HasTable
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
                     ReplicateBulkAction::make()
-                        ->label('Replicate')
+                        ->label(translate('Replicate'))
                         ->modalWidth(MaxWidth::Large)
                         ->modalDescription('Replicating transactions will also replicate their journal entries. Are you sure you want to proceed?')
                         ->successNotificationTitle('Transactions Replicated Successfully')
@@ -438,7 +438,7 @@ class Transactions extends Page implements HasTable
                         ->deselectRecordsAfterCompletion()
                         ->excludeAttributes(['created_by', 'updated_by', 'created_at', 'updated_at'])
                         ->beforeReplicaSaved(static function (Transaction $replica) {
-                            $replica->description = '(Copy of) ' . $replica->description;
+                            $replica->description = '('.translate('Copy of').') ' . $replica->description;
                         })
                         ->withReplicatedRelationships(['journalEntries']),
                 ]),
@@ -448,7 +448,7 @@ class Transactions extends Page implements HasTable
     protected function buildTransactionAction(string $name, string $label, TransactionType $type): Actions\CreateAction
     {
         return Actions\CreateAction::make($name)
-            ->label($label)
+            ->label(translate($label))
             ->modalWidth(MaxWidth::ThreeExtraLarge)
             ->model(static::getModel())
             ->fillForm(fn (): array => $this->getFormDefaultsForType($type))

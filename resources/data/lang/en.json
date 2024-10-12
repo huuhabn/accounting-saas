@@ -400,5 +400,21 @@
     "My Account": "My Account",
     "Switch Company": "Switch Company",
     "Limited Liability Company": "Limited Liability Company",
-    "Non-profit": "Non-profit"
+    "Non-profit": "Non-profit",
+    "Add Income": "Add Income",
+    "Add Expense": "Add Expense",
+    "Add Transfer": "Add Transfer",
+    "Add Journal Transaction": "Add Journal Transaction",
+    "Journal Entry": "Journal Entry",
+    "Connect Your Bank": "Connect Your Bank",
+    "More": "More",
+    "Mark as Reviewed": "Mark as Reviewed",
+    "Category": "Category",
+    "Status": "Status",
+    "Edit Transaction": "Edit Transaction",
+    "Edit Transfer": "Edit Transfer",
+    "Edit Journal Transaction": "Edit Journal Transaction",
+    "Replicate": "Replicate",
+    "Copy of": "Copy of",
+    "Date": "Date"
 }
