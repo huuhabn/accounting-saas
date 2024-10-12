@@ -31,10 +31,12 @@ class AppServiceProvider extends ServiceProvider
                             ->bgType('svg'),
                     ]);
             }
-        )
-            ->register();
+        )->register();
+
         $this->app->singleton(DateRangeService::class);
+
         $this->app->singleton(LoginResponse::class, \App\Http\Responses\LoginResponse::class);
+
     }
 
     /**
@@ -44,9 +46,9 @@ class AppServiceProvider extends ServiceProvider
     {
         Notifications::alignment(Alignment::Center);
 
-        //        PanelSwitcher::configureUsing(function (PanelSwitcher $panelSwitch) {
-        //            $panelSwitch->circle();
-        //        });
+       // PanelSwitcher::configureUsing(function (PanelSwitcher $panelSwitch) {
+       //     $panelSwitch->circle();
+       // });
         PanelSwitcher::boot();
 
         FilamentAsset::register([

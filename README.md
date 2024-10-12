@@ -9,6 +9,7 @@ This repo is currently a work in progress — PRs and issues welcome!
 Install all the dependencies using composer and npm
 
 ```bash
+git checkout dev
 composer install
 npm install
 ```
