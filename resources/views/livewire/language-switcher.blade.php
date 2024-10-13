@@ -2,7 +2,7 @@
     $languageSwitch = \App\Filament\Components\LanguageSwitcher::make();
     $locales = $languageSwitch->getLocales();
     $isCircular = $languageSwitch->isCircular();
-    $isFlagsOnly = $languageSwitch->isFlagsOnly();
+    $flagsOnly = $languageSwitch->isFlagsOnly();
     $hasFlags = filled($languageSwitch->getFlags());
     $placement = $languageSwitch->getPlacement()->value;
 @endphp
@@ -10,13 +10,13 @@
     teleport
     :placement="$placement"
     class="fi-dropdown fi-user-menu"
-    :width="$isFlagsOnly ? '!max-w-[3rem]' : '!max-w-[10rem]'"
+    :width="$flagsOnly ? '!max-w-[3rem]' : '!max-w-[10rem]'"
 >
     <x-slot name="trigger">
         <div
             @class([
-                'flex flex-1 items-center justify-center gap-3 rounded-lg outline-none transition duration-75 hover:bg-gray-100 focus-visible:bg-gray-100 dark:hover:bg-white/5 dark:focus-visible:bg-white/5 bg-gray-100 dark:bg-white/5',
-                'rounded-full' => $isCircular,
+                'flex items-center justify-center gap-x-3 text-sm font-medium outline-none transition duration-75 hover:bg-gray-100 focus-visible:bg-gray-100 dark:hover:bg-white/5 dark:focus-visible:bg-white/5',
+                'rounded-full ring-1' => $isCircular,
                 'rounded-lg' => !$isCircular,
             ])
             x-tooltip="{
@@ -25,7 +25,7 @@
                 placement: 'bottom'
             }"
         >
-            @if ($isFlagsOnly || $hasFlags)
+            @if ($flagsOnly || $hasFlags)
                 <x-filament::avatar
                     :src="$languageSwitch->getFlag(app()->getLocale())"
                     size="w-6 h-6"
@@ -41,7 +41,7 @@
     <x-filament::dropdown.list
         @class([
             'space-y-2',
-            'flex flex-col m-1' => !$isFlagsOnly
+            'flex flex-col m-1' => !$flagsOnly
         ])
     >
         @foreach ($locales as $locale)
@@ -49,7 +49,7 @@
                 <button
                     type="button"
                     wire:click="changeLocale('{{ $locale }}')"
-                    @if ($isFlagsOnly)
+                    @if ($flagsOnly)
                         x-tooltip="{
                         content: @js($languageSwitch->getLabel($locale)),
                         theme: $store.theme,
@@ -59,10 +59,10 @@
 
                     @class([
                         'text-gray-900 dark:text-gray-200 text-sm font-medium flex items-center p-2 rounded-lg hover:bg-gray-200 focus-visible:bg-gray-50 dark:hover:bg-white/5 dark:focus-visible:bg-white/5',
-                        'justify-start space-x-2 rtl:space-x-reverse' => !$isFlagsOnly,
+                        'justify-start space-x-2 rtl:space-x-reverse' => !$flagsOnly,
                     ])
                 >
-                    @if ($isFlagsOnly)
+                    @if ($flagsOnly)
                         <x-filament::avatar
                             :src="$languageSwitch->getFlag($locale)"
                             size="w-6 h-6"
@@ -91,7 +91,6 @@
                         <span class="text-sm font-medium text-gray-600 hover:bg-transparent dark:text-gray-200">
                             {{ $languageSwitch->getLabel($locale) }}
                         </span>
-
                     @endif
                 </button>
             @endif

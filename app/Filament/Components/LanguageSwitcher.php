@@ -16,15 +16,13 @@ class LanguageSwitcher extends Component
 {
     protected ?string $displayLocale = null;
 
-    protected array | Closure | null $outsidePanelRoutes = null;
-
     protected array | Closure $excludes = [];
 
     protected array | Closure $flags = [];
 
-    protected bool | Closure $isCircular = true;
+    protected bool $flagsOnly = false;
 
-    protected bool $isFlagsOnly = false;
+    protected bool | Closure $isCircular = true;
 
     protected array | Closure $labels = [];
 
@@ -49,8 +47,6 @@ class LanguageSwitcher extends Component
         $static->visible();
 
         $static->displayLocale();
-
-        $static->outsidePanelRoutes();
 
         $static->configure();
 
@@ -90,17 +86,6 @@ class LanguageSwitcher extends Component
         return $this;
     }
 
-    public function outsidePanelRoutes(array | Closure | null $routes = null): static
-    {
-        $this->outsidePanelRoutes = $routes ?? [
-            'auth.login',
-            'auth.profile',
-            'auth.register',
-        ];
-
-        return $this;
-    }
-
     public function excludes(array | Closure $excludes): static
     {
         $this->excludes = $excludes;
@@ -110,7 +95,7 @@ class LanguageSwitcher extends Component
 
     public function flagsOnly(bool $condition = true): static
     {
-        $this->isFlagsOnly = $condition;
+        $this->flagsOnly = $condition;
 
         return $this;
     }
@@ -199,12 +184,12 @@ class LanguageSwitcher extends Component
      */
     public function isFlagsOnly(): bool
     {
-        return $this->evaluate($this->isFlagsOnly) && filled($this->getFlags());
+        return $this->evaluate($this->flagsOnly) && filled($this->getFlags());
     }
 
     public function isVisibleInsidePanels(): bool
     {
-        return (bool) ($this->evaluate($this->visibleInsidePanels)
+        return ($this->evaluate($this->visibleInsidePanels)
             && count($this->locales) > 1
             && $this->isCurrentPanelIncluded());
     }
@@ -229,7 +214,7 @@ class LanguageSwitcher extends Component
      */
     public function getPlacement(): DropdownPlacement
     {
-        if ($this->isFlagsOnly()){
+        if ($this->flagsOnly()){
             return DropdownPlacement::Bottom;
         }
 
