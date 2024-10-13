@@ -55,7 +55,7 @@ class UserPanelProvider extends PanelProvider
             ])
             ->navigation(false)
             ->viteTheme('resources/css/filament/user/theme.css')
-            ->brandLogo(static fn () => view('components.icons.logo'))
+            ->brandLogo(static fn () => view('components.company.logo'))
             ->discoverResources(in: app_path('Filament/User/Resources'), for: 'App\\Filament\\User\\Resources')
             ->discoverPages(in: app_path('Filament/User/Pages'), for: 'App\\Filament\\User\\Pages')
             ->discoverClusters(in: app_path('Filament/User/Clusters'), for: 'App\\Filament\\User\\Clusters')

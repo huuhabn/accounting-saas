@@ -14,6 +14,7 @@ use Filament\PanelProvider;
 use Filament\Pages\Dashboard;
 use App\Livewire\UpdatePassword;
 use Filament\Support\Colors\Color;
+use Filament\View\PanelsRenderHook;
 use Filament\Forms\Components\Select;
 use App\Filament\Company\Pages\Reports;
 use App\Filament\User\Clusters\Account;
@@ -162,6 +163,10 @@ class CompanyPanelProvider extends PanelProvider
             ->pages([
                 Pages\Dashboard::class,
             ])
+            ->renderHook(
+                name: PanelsRenderHook::TOPBAR_START,
+                hook: fn (): string => view('components.welcome')
+            )
             ->authGuard('web')
             ->discoverWidgets(in: app_path('Filament/Company/Widgets'), for: 'App\\Filament\\Company\\Widgets')
             ->widgets([

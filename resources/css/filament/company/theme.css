@@ -194,22 +194,26 @@
 .fi-sidebar{
     @apply bg-white ring-2 !important;
 }
+:is(.dark .fi-sidebar) {
+    background-color: rgba(10, 16, 33, 0.75) !important;
+}
+
 /*.fi-topbar > nav, .fi-sidebar-header {*/
 /*    @apply bg-transparent ring-0 shadow-none !important;*/
 /*    transition: background-color 0.3s, top 0.3s;*/
 /*}*/
 
-.fi-topbar > nav.topbar-hovered, .fi-sidebar-header.topbar-hovered {
-    background-color: rgba(255, 255, 255, 0.75) !important;
-}
-
-:is(.dark .fi-topbar > nav.topbar-hovered, .dark .fi-sidebar-header.topbar-hovered) {
-    background-color: rgba(10, 16, 33, 0.75) !important;
-}
-
-/*.fi-topbar > nav.topbar-scrolled, .fi-sidebar-header.topbar-scrolled {*/
-/*    background-color: rgba(255, 255, 255, 0.5) !important;*/
+/*.fi-topbar > nav.topbar-hovered, .fi-sidebar-header.topbar-hovered {*/
+/*    background-color: rgba(255, 255, 255, 0.75) !important;*/
 /*}*/
+
+/*:is(.dark .fi-topbar > nav.topbar-hovered, .dark .fi-sidebar-header.topbar-hovered) {*/
+/*    background-color: rgba(10, 16, 33, 0.75) !important;*/
+/*}*/
+
+.fi-topbar > nav.topbar-scrolled, .fi-sidebar-header.topbar-scrolled {
+    background-color: rgba(255, 255, 255, 0.5) !important;
+}
 
 :is(.dark .fi-topbar > nav.topbar-scrolled, .dark .fi-sidebar-header.topbar-scrolled) {
     background-color: rgba(10, 16, 33, 0.5) !important;
