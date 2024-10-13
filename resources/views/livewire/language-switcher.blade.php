@@ -33,7 +33,15 @@
                     :alt="$languageSwitch->getLabel(app()->getLocale())"
                 />
             @else
-                <span class="font-semibold text-md">{{ getCharAvatar(app()->getLocale()) }}</span>
+                <span
+                    @class([
+                        'flex items-center justify-center flex-shrink-0 w-6 h-6 p-2 text-xs font-semibold bg-primary-500 text-white',
+                        'rounded-full' => $isCircular,
+                        'rounded-lg' => !$isCircular,
+                    ])
+                >
+                    {{ getCharAvatar(app()->getLocale()) }}
+                </span>
             @endif
         </div>
     </x-slot>
