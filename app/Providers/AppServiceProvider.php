@@ -61,7 +61,9 @@ class AppServiceProvider extends ServiceProvider
             $switch
                 ->circular()
                 ->locales([
-                    'ar','en', 'vi'
+                    'ar' => asset('assets/svg/flags/ar.svg'),
+                    'en' => asset('assets/svg/flags/gb.svg'),
+                    'vi' => asset('assets/svg/flags/vn.svg'),
                 ]);
         });
         LanguageSwitcher::boot();
