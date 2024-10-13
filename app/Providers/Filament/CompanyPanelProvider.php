@@ -152,7 +152,7 @@ class CompanyPanelProvider extends PanelProvider
                     ]);
             })
             ->viteTheme('resources/css/filament/company/theme.css')
-            ->brandLogo(static fn () => view('components.icons.logo'))
+            ->brandLogo(static fn () => view('components.company.logo'))
             ->tenant(Company::class)
             ->tenantProfile(ManageCompany::class)
             ->tenantRegistration(CreateCompany::class)
