@@ -18,7 +18,7 @@ use Filament\Resources\Components\Tab as ResourcesTab;
 use Filament\Support\Facades\FilamentColor;
 use Filament\Tables\Table;
 
-class ConfigureCompanyDefault
+class CompanyUpdated
 {
     /**
      * Handle the event.

@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Filament\Components\PanelSwitcher;
 use App\Services\DateRangeService;
+use App\Filament\Components\LanguageSwitcher;
 use Filament\Http\Responses\Auth\Contracts\LoginResponse;
 use Filament\Notifications\Livewire\Notifications;
 use Filament\Panel;
@@ -55,5 +56,16 @@ class AppServiceProvider extends ServiceProvider
         FilamentAsset::register([
             Js::make('TopNavigation', __DIR__ . '/../../resources/js/TopNavigation.js'),
         ]);
+
+        LanguageSwitcher::configureUsing(function (LanguageSwitcher $switch) {
+            $switch
+                ->circular()
+                ->locales([
+                    'ar' => asset('assets/svgs/flags/ar.svg'),
+                    'en' => asset('assets/svgs/flags/gb.svg'),
+                    'vi' => asset('assets/svgs/flags/vn.svg'),
+                ]);
+        });
+        LanguageSwitcher::boot();
     }
 }

@@ -3,6 +3,48 @@
 use App\Enums\Setting\NumberFormat;
 use App\Models\Setting\Localization;
 use Filament\Support\RawJs;
+use Illuminate\Support\Facades\File;
+
+if(!function_exists('getSupportedLocales')) {
+    function getSupportedLocales(string $langPath = null, $type = 'folder') {
+        $filePath = $langPath ? base_path($langPath) : lang_path();
+
+        if ($type == 'folder') {
+            $folders = File::directories($filePath);
+            return array_filter(array_map('basename', $folders), function($folderName) {
+                return $folderName !== 'vendor';
+            });
+        }
+
+        $files = File::files($filePath);
+        $locales = [];
+
+        foreach ($files as $file) {
+            $locales[] = pathinfo($file->getFilename(), PATHINFO_FILENAME);
+        }
+
+        return $locales;
+    }
+}
+
+if(!function_exists('getCharAvatar')) {
+    function getCharAvatar(string $string) {
+        return str($string)->length() > 2
+            ? str($string)->substr(0, 2)->upper()->toString()
+            : str($string)->upper()->toString();
+    }
+}
+
+if(!function_exists('try_svg')) {
+    function try_svg($name, $classes) {
+        try {
+            return svg($name, $classes);
+        }
+        catch(\Exception $e) {
+            return '❓';
+        }
+    }
+}
 
 if (! function_exists('generateJsCode')) {
     function generateJsCode(string $precision, ?string $currency = null): string
