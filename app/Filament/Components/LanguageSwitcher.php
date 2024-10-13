@@ -126,8 +126,12 @@ class LanguageSwitcher extends Component
 
     public function locales(array | Closure $locales): static
     {
-        $this->locales = array_keys($locales);
-        $this->flags = $locales;
+        if (array_is_list($locales)){
+            $this->locales = $locales;
+        } else {
+            $this->locales = array_keys($locales);
+            $this->flags = $locales;
+        }
 
         return $this;
     }
@@ -199,7 +203,7 @@ class LanguageSwitcher extends Component
      */
     public function isFlagsOnly(): bool
     {
-        return (bool) $this->evaluate($this->isFlagsOnly) && filled($this->getFlags());
+        return $this->evaluate($this->isFlagsOnly) && filled($this->getFlags());
     }
 
     public function isVisibleInsidePanels(): bool
@@ -211,9 +215,9 @@ class LanguageSwitcher extends Component
 
     public function isVisibleOutsidePanels(): bool
     {
-        return (bool) ($this->evaluate($this->visibleOutsidePanels)
+        return $this->evaluate($this->visibleOutsidePanels)
             && str(request()->route()->getName())->contains($this->outsidePanelRoutes)
-            && $this->isCurrentPanelIncluded());
+            && $this->isCurrentPanelIncluded();
     }
 
     public function getLabels(): array

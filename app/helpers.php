@@ -5,6 +5,15 @@ use App\Models\Setting\Localization;
 use Filament\Support\RawJs;
 use Illuminate\Support\Facades\File;
 
+if (!function_exists('array_is_list')) {
+    function array_is_list(array $arr): bool
+    {
+        if ($arr === []) {
+            return true;
+        }
+        return array_keys($arr) === range(0, count($arr) - 1);
+    }
+}
 if(!function_exists('getSupportedLocales')) {
     function getSupportedLocales(string $langPath = null, $type = 'folder') {
         $filePath = $langPath ? base_path($langPath) : lang_path();
