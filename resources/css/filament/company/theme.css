@@ -216,8 +216,7 @@
 .fi-badge {
     display: inline-flex;
 }
-
-/* ========== START Slim Scrollbar ==================== */
+/* ========== Start Slim Scrollbar ==================== */
 ::-webkit-scrollbar {
     height: 5px;
     width: 5px

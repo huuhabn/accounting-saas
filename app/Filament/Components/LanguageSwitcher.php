@@ -32,11 +32,9 @@ class LanguageSwitcher extends Component
 
     protected bool $nativeLabel = false;
 
-    protected ?DropdownPlacement $outsidePanelPlacement = null;
+    protected ?DropdownPlacement $placement = null;
 
     protected bool | Closure $visibleInsidePanels = false;
-
-    protected bool | Closure $visibleOutsidePanels = false;
 
     protected Closure | string $renderHook = PanelsRenderHook::GLOBAL_SEARCH_AFTER;
 
@@ -136,9 +134,9 @@ class LanguageSwitcher extends Component
         return $this;
     }
 
-    public function outsidePanelPlacement(DropdownPlacement $placement): static
+    public function placement(DropdownPlacement $placement): static
     {
-        $this->outsidePanelPlacement = $placement;
+        $this->placement = $placement;
 
         return $this;
     }
@@ -157,11 +155,9 @@ class LanguageSwitcher extends Component
         return $this;
     }
 
-    public function visible(bool | Closure $insidePanels = true, bool | Closure $outsidePanels = false): static
+    public function visible(bool | Closure $insidePanels = true): static
     {
         $this->visibleInsidePanels = $insidePanels;
-
-        $this->visibleOutsidePanels = $outsidePanels;
 
         return $this;
     }
@@ -213,13 +209,6 @@ class LanguageSwitcher extends Component
             && $this->isCurrentPanelIncluded());
     }
 
-    public function isVisibleOutsidePanels(): bool
-    {
-        return $this->evaluate($this->visibleOutsidePanels)
-            && str(request()->route()->getName())->contains($this->outsidePanelRoutes)
-            && $this->isCurrentPanelIncluded();
-    }
-
     public function getLabels(): array
     {
         return (array) $this->evaluate($this->labels);
@@ -235,9 +224,16 @@ class LanguageSwitcher extends Component
         return (bool) $this->evaluate($this->nativeLabel);
     }
 
-    public function getOutsidePanelPlacement(): DropdownPlacement
+    /**
+     * @throws Exception
+     */
+    public function getPlacement(): DropdownPlacement
     {
-        return $this->outsidePanelPlacement ?? DropdownPlacement::BottomEnd;
+        if ($this->isFlagsOnly()){
+            return DropdownPlacement::Bottom;
+        }
+
+        return $this->placement ?? DropdownPlacement::BottomEnd;
     }
 
     public function getRenderHook(): string
