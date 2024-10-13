@@ -4,15 +4,13 @@
     $isCircular = $languageSwitch->isCircular();
     $isFlagsOnly = $languageSwitch->isFlagsOnly();
     $hasFlags = filled($languageSwitch->getFlags());
-    $showFlags = true;
-    $isVisibleOutsidePanels = $languageSwitch->isVisibleOutsidePanels();
-    $placement = $languageSwitch->getOutsidePanelPlacement()->value;
+    $placement = $languageSwitch->getPlacement()->value;
 @endphp
 <x-filament::dropdown
     teleport
     :placement="$placement"
     class="fi-dropdown fi-user-menu"
-{{--    :width="$isFlagsOnly ? 'flags-only' : 'xs'"--}}
+    :width="$isFlagsOnly ? '!max-w-[3rem]' : '!max-w-[10rem]'"
 >
     <x-slot name="trigger">
         <div
@@ -20,7 +18,6 @@
                 'flex flex-1 items-center justify-center gap-3 rounded-lg outline-none transition duration-75 hover:bg-gray-100 focus-visible:bg-gray-100 dark:hover:bg-white/5 dark:focus-visible:bg-white/5 bg-gray-100 dark:bg-white/5',
                 'rounded-full' => $isCircular,
                 'rounded-lg' => !$isCircular,
-                'ring-2 ring-inset ring-gray-200 hover:ring-gray-300 dark:ring-gray-500 hover:dark:ring-gray-400' => $isFlagsOnly || $hasFlags,
             ])
             x-tooltip="{
                 content: @js($languageSwitch->getLabel(app()->getLocale())),
@@ -42,10 +39,9 @@
     </x-slot>
 
     <x-filament::dropdown.list
-        style="{{ $isFlagsOnly ? 'max-width: 3rem !important;' : '' }}"
         @class([
-            '!border-t-0 space-y-2 !p-2.5',
-            'flex flex-col' => !$isFlagsOnly
+            'space-y-2',
+            'flex flex-col m-1' => !$isFlagsOnly
         ])
     >
         @foreach ($locales as $locale)
@@ -62,12 +58,10 @@
                     @endif
 
                     @class([
-                        'text-gray-700 dark:text-gray-200 text-sm font-medium flex items-center p-2 rounded-lg hover:bg-gray-50 focus-visible:bg-gray-50 dark:hover:bg-white/5 dark:focus-visible:bg-white/5',
-                        'justify-center px-2 py-0.5' => $isFlagsOnly,
-                        'justify-start space-x-2 rtl:space-x-reverse p-1' => !$isFlagsOnly,
+                        'text-gray-900 dark:text-gray-200 text-sm font-medium flex items-center p-2 rounded-lg hover:bg-gray-200 focus-visible:bg-gray-50 dark:hover:bg-white/5 dark:focus-visible:bg-white/5',
+                        'justify-start space-x-2 rtl:space-x-reverse' => !$isFlagsOnly,
                     ])
                 >
-
                     @if ($isFlagsOnly)
                         <x-filament::avatar
                             :src="$languageSwitch->getFlag($locale)"
@@ -103,4 +97,5 @@
             @endif
         @endforeach
     </x-filament::dropdown.list>
+
 </x-filament::dropdown>
