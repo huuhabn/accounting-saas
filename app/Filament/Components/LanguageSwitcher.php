@@ -28,6 +28,8 @@ class LanguageSwitcher extends Component
 
     protected array | Closure $locales = [];
 
+    protected bool $showLabel = false;
+
     protected bool $nativeLabel = false;
 
     protected ?DropdownPlacement $placement = null;
@@ -75,6 +77,13 @@ class LanguageSwitcher extends Component
     public function displayLocale(?string $locale = null): static
     {
         $this->displayLocale = $locale ?? app()->getLocale();
+
+        return $this;
+    }
+
+    public function showLabel(bool $condition = true): static
+    {
+        $this->showLabel = $condition;
 
         return $this;
     }
@@ -177,6 +186,11 @@ class LanguageSwitcher extends Component
     public function isCircular(): bool
     {
         return (bool) $this->evaluate($this->isCircular);
+    }
+
+    public function isShowLabel(): bool
+    {
+        return (bool) $this->evaluate($this->showLabel);
     }
 
     /**

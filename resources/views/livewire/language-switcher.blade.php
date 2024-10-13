@@ -2,6 +2,7 @@
     $languageSwitch = \App\Filament\Components\LanguageSwitcher::make();
     $locales = $languageSwitch->getLocales();
     $isCircular = $languageSwitch->isCircular();
+    $showLabel = $languageSwitch->isShowLabel();
     $flagsOnly = $languageSwitch->isFlagsOnly();
     $hasFlags = filled($languageSwitch->getFlags());
     $placement = $languageSwitch->getPlacement()->value;
@@ -15,9 +16,9 @@
     <x-slot name="trigger">
         <div
             @class([
-                'flex items-center justify-center gap-x-3 text-sm font-medium outline-none transition duration-75 hover:bg-gray-100 focus-visible:bg-gray-100 dark:hover:bg-white/5 dark:focus-visible:bg-white/5',
-                'rounded-full ring-1' => $isCircular,
-                'rounded-lg' => !$isCircular,
+                'flex items-center justify-center gap-x-3 p-2 text-sm font-medium outline-none transition duration-75 bg-primary-100 dark:hover:bg-white/5 dark:focus-visible:bg-white/5',
+                'rounded-full' => $isCircular && !$showLabel,
+                'rounded-lg' => !$isCircular || $showLabel,
             ])
             x-tooltip="{
                 content: @js($languageSwitch->getLabel(app()->getLocale())),
@@ -42,6 +43,18 @@
                 >
                     {{ getCharAvatar(app()->getLocale()) }}
                 </span>
+            @endif
+
+            @if($showLabel)
+                <span class="flex-1 text-left text-primary-600 dark:text-primary-400">
+                    {{ $languageSwitch->getLabel(app()->getLocale()) }}
+                </span>
+
+                <x-filament::icon
+                    icon="heroicon-m-chevron-down"
+                    icon-alias="panels::panel-switch-simple-icon"
+                    class="h-5 w-5 transition duration-75 text-primary-600 group-hover:text-primary-500 group-focus-visible:text-primary-500 dark:text-primary-500 dark:group-hover:text-primary-400 dark:group-focus-visible:text-primary-400"
+                />
             @endif
         </div>
     </x-slot>
