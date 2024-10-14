@@ -96,6 +96,7 @@ export default defineConfig({
                         {text: 'Orders', link: '/core/reference/orders'},
                         {text: 'Payments', link: '/core/reference/payments'},
                         {text: 'Pricing', link: '/core/reference/pricing'},
+                        {text: 'Inventory', link: '/core/reference/inventory'},
                         {text: 'Products', link: '/core/reference/products'},
                         {text: 'Search', link: '/core/reference/search'},
                         {text: 'Tags', link: '/core/reference/tags'},

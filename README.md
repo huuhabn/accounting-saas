@@ -56,6 +56,16 @@ Translate language files from one language to another using Google Translate
 php artisan hs:translate en vi ar
 ```
 
+## Run docs
+
+```bash
+yarn docs:dev
+# or
+yarn docs:build
+# or
+docs:preview
+```
+
 Translate Specific File
 ```
 php artisan hs:translate vendor/filament-companies/en vendor/filament-companies/vi --file=default.php
